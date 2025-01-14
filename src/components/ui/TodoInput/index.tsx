@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { useTodos }  from '@/context/TodoContext';
-import { addButton, inputSection ,todoInputWrapper} from '@/components/ui/TodoInput/todoInput.css.ts';
+import { addButton, inputSection ,todoInputWrapper} from '@/components/ui/TodoInput/TodoInput.css.ts';
 
 const TodoInput: React.FC = () => {
   const { dispatch } = useTodos();

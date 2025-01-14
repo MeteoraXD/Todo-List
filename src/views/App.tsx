@@ -2,11 +2,12 @@ import React from 'react';
 
 
 import SessionSwapper from '@/components/ui/SessionSwapper';
-import '@/styles/globalStyled.css.ts';
+import '@/styles/global.css.ts';
 import TodoProvider  from '@/context/TodoContext';
 import TodoInput from '@/components/ui/TodoInput';
 import TodoList from '@/components/ui/TodoList';
-import KillButton from '@/components/ui/killButton';
+import KillButton from '@/components/ui/KillButton';
+
 
 const App: React.FC = () => {
   return (
