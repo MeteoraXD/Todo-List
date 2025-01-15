@@ -1,4 +1,4 @@
-import { style  } from '@vanilla-extract/css';
+import { style } from '@vanilla-extract/css';
 
 import { vars } from '@/styles/theme.css.ts';
 
@@ -10,21 +10,16 @@ enum TaskStatus {
 const ListWrapper = style({
   display: 'flex',
   flexDirection: 'column',
-   listStyle: 'none',
-width: '100%',
+  listStyle: 'none',
+  width: '100%',
 });
 
-const ListContainer = style({
-  display: 'flex',
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-});
 
 const EditInput = style({
-  padding : "10px",
-  color : vars.colors.primary.white,
-  borderRadius  : '5px',
+  padding: '10px',
+  color: vars.colors.primary.white,
+  background: 'rgba(26,14,199,0.84)',
+  borderRadius: '5px',
   border: 'none',
 });
 
@@ -39,34 +34,44 @@ const TaskWrapper = style({
   alignItems: 'center',
   justifyItems: 'space-between',
   justifyContent: 'space-between',
+  height: '100%',
+  background: `linear-gradient(
+    135deg, 
+    rgba(24, 16, 110, 0.84) 0%, 
+    rgba(48, 32, 150, 0.7) 50%, 
+    rgba(72, 48, 190, 0.5) 100%
+  )`,
   marginTop: '10px',
-  width: '90%',
-})
+  width: '95%',
+  borderRadius: '5px',
+  maxHeight: '40px',
+  padding: '5px',
+});
 
 const TaskList = {
-    [TaskStatus.COMPLETED]: style({
-      color: vars.colors.primary.successGreen
-    }),
-    [TaskStatus.PENDING]: style({
-      color: vars.colors.primary.white
-    })
+  [TaskStatus.COMPLETED]: style({
+    color: vars.colors.primary.successGreen,
+  }),
+  [TaskStatus.PENDING]: style({
+    color: vars.colors.primary.white,
+  }),
 
 
 };
 const ConfigurationButtonWrapper = style({
   display: 'flex',
   flexDirection: 'row',
-  gap: "5px" ,
-  marginLeft: "5px"
+  gap: '5px',
+  marginLeft: '5px',
 });
 
 export {
   ListWrapper,
-  ListContainer,
+
   EditInput,
   ConfigurationButton,
   TaskList,
   TaskStatus,
   TaskWrapper,
-  ConfigurationButtonWrapper
-}
+  ConfigurationButtonWrapper,
+};

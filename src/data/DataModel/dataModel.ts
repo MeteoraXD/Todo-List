@@ -6,6 +6,12 @@ export interface Todo {
   completed: boolean;
 }
 
+
+// enum StorageType {
+//   LOCAL = 'LOCAL',
+//   SESSION = 'SESSION',
+// }
+
 export interface TodoContextType {
   todos: Todo[];
   dispatch: React.Dispatch<TodoAction>;
