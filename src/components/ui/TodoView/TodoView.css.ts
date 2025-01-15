@@ -9,7 +9,7 @@ const TodoViewWrapper = style({
   justifyContent: 'center',
   width: "560px",
   height: "auto",
-  maxHeight: "100px",
+  maxHeight: "1000px",
   backgroundColor: 'grey',
   borderRadius: "5px",
   padding: "15px",
