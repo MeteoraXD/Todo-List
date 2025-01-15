@@ -8,10 +8,10 @@ const TodoViewWrapper = style({
   alignItems: 'center',
   justifyContent: 'center',
   width: "560px",
-  height: "560px"
-  ,maxHeight: '400px',
+  height: "auto",
   backgroundColor: 'grey',
   borderRadius: "5px",
+  padding: "15px",
 });
 
 const TodoTitle = style({
