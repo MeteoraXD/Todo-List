@@ -1,10 +1,14 @@
+// import useTodos from '@/context/TodoContext';
 import { killButtonCss } from '@/components/ui/KillButton/KillButton.css.ts';
 
 const KillButton =  () => {
-const killSessionHandler = (): void => {
-  localStorage.clear();
-  sessionStorage.clear();
-  location.reload();
+
+  // const {storageType} = useTodos()
+
+const killSessionHandler = () => {
+sessionStorage.clear();
+localStorage.clear();
+location.reload();
 }
 
 

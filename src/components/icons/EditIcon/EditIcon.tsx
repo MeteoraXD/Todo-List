@@ -2,24 +2,10 @@ import React from 'react';
 
 const EditIcon:React.FunctionComponent = () => {
   return (
-    <svg width="20px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#fff"
-        >
-
-      <g id="SVGRepo_bgCarrier" strokeWidth="0" />
-
-      <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
-
-      <g id="SVGRepo_iconCarrier">
-        <path
-          d="M21.2799 6.40005L11.7399 15.94C10.7899 16.89 7.96987 17.33 7.33987 16.7C6.70987 16.07 7.13987 13.25 8.08987 12.3L17.6399 2.75002C17.8754 2.49308 18.1605 2.28654 18.4781 2.14284C18.7956 1.99914 19.139 1.92124 19.4875 1.9139C19.8359 1.90657 20.1823 1.96991 20.5056 2.10012C20.8289 2.23033 21.1225 2.42473 21.3686 2.67153C21.6147 2.91833 21.8083 3.21243 21.9376 3.53609C22.0669 3.85976 22.1294 4.20626 22.1211 4.55471C22.1128 4.90316 22.0339 5.24635 21.8894 5.5635C21.7448 5.88065 21.5375 6.16524 21.2799 6.40005V6.40005Z"
-          stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
- />
-        <path
-          d="M11 4H6C4.93913 4 3.92178 4.42142 3.17163 5.17157C2.42149 5.92172 2 6.93913 2 8V18C2 19.0609 2.42149 20.0783 3.17163 20.8284C3.92178 21.5786 4.93913 22 6 22H17C19.21 22 20 20.2 20 18V13"
-          stroke="#000" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
- />
-      </g>
-
+    <svg xmlns="http://www.w3.org/2000/svg" shapeRendering="geometricPrecision" height="20px" textRendering="geometricPrecision"
+         imageRendering="optimizeQuality" fillRule="evenodd" clipRule="evenodd" viewBox="0 0 512 506.3">
+      <path fill="#fff" fillRule="nonzero"
+            d="M119.42 6.87h125.91l-60.09 62.8h-65.82c-15.62 0-29.77 6.34-39.97 16.53l-.12.13a56.351 56.351 0 00-16.54 39.97v317.24h317.25c15.63 0 29.77-6.34 39.97-16.54l.12-.12c10.2-10.2 16.54-24.35 16.54-39.97V322.1l62.79-65.59v130.4c0 32.73-13.42 62.55-35.05 84.24l-.2.2c-21.68 21.58-51.48 34.98-84.17 34.98H47.92c-13.08 0-25.02-5.38-33.75-14.05l-.18-.19C5.36 483.38 0 471.46 0 458.42V126.3c0-32.74 13.43-62.56 35.06-84.25l.19-.19C56.94 20.27 86.72 6.87 119.42 6.87zm184.8 311.78l-122.6 24.97 17.73-130.45 104.87 105.48zm-66.17-144.94L401.27 3.81c4.47-3.72 8.95-5.16 14.11-2.2l93.64 90.68c3.72 4.48 4.48 9.64-.76 14.87l-165.41 172.1-104.8-105.55z" />
     </svg>
   )
 };

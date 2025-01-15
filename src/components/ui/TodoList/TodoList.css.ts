@@ -10,25 +10,37 @@ enum TaskStatus {
 const ListWrapper = style({
   display: 'flex',
   flexDirection: 'column',
+   listStyle: 'none',
+width: '100%',
 });
 
 const ListContainer = style({
+  display: 'flex',
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
 });
 
-const EditInput = style({});
+const EditInput = style({
+  padding : "10px",
+  color : vars.colors.primary.white,
+  borderRadius  : '5px',
+  border: 'none',
+});
 
 const ConfigurationButton = style({
-  backgroundColor: 'white',
+  background: 'none',
   border: 'none',
-  borderRadius: '5px',
   cursor: 'pointer',
 });
 
 const TaskWrapper = style({
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'center',
+  justifyItems: 'space-between',
+  justifyContent: 'space-between',
   marginTop: '10px',
+  width: '90%',
 })
 
 const TaskList = {

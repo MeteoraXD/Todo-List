@@ -10,7 +10,10 @@ globalStyle(':root', {
   textRendering: 'optimizeLegibility',
   WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
+  background: 'linear-gradient(135deg, #100a40 0%, #3b1e6f 100%)',
+  boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)',
 });
+
 
 globalStyle('a', {
   fontWeight: 500,
@@ -21,7 +24,9 @@ globalStyle('a', {
 globalStyle('a:hover', {
   color: '#535bf2',
 });
-
+globalStyle('input::placeholder', {
+  color: '#ffffff',
+});
 
 globalStyle('body', {
   margin: 0,

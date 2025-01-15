@@ -9,7 +9,7 @@ const AddIcon:React.FunctionComponent = () => {
       <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round" />
 
       <g id="SVGRepo_iconCarrier">
-        <path d="M4 12H20M12 4V20" stroke="#262222" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+        <path d="M4 12H20M12 4V20" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
               />
       </g>
 

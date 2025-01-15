@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-import useTodos   from '@/context/TodoContext';
-import { addButton, inputSection ,todoInputWrapper} from '@/components/ui/TodoInput/TodoInput.css.ts';
-import AddIcon from '@/components/icons/AddIcon';
+import useTodos from '@/context/TodoContext';
+import { addButton, inputSection, todoInputWrapper } from '@/components/ui/TodoInput/TodoInput.css.ts';
 
 const TodoInput: React.FC = () => {
   const { dispatch } = useTodos();
@@ -15,16 +14,18 @@ const TodoInput: React.FC = () => {
     }
   };
 
+
   return (
-    <div className={todoInputWrapper} >
+    <div className={todoInputWrapper}>
       <input
         className={inputSection}
         type="text"
+
         value={text}
         onChange={(e) => setText(e.target.value)}
-        placeholder="Add a todo..."
+        placeholder="Add a todo.."
       />
-      <button className={addButton} onClick={handleAddTodo}><AddIcon/></button>
+      <button className={addButton} onClick={handleAddTodo}>Add</button>
     </div>
   );
 };

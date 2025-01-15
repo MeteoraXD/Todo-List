@@ -10,8 +10,8 @@ const TodoViewWrapper = style({
   width: "560px",
   height: "auto",
   maxHeight: "1000px",
-  backgroundColor: 'grey',
-  borderRadius: "5px",
+  backgroundColor: '#100a40',
+  borderRadius: "15px",
   padding: "15px",
 });
 

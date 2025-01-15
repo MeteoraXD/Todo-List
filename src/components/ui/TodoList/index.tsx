@@ -8,12 +8,13 @@ import CompletedIcon from '@/components/icons/CompletedIcon';
 import InCompletedIcon from '@/components/icons/IncompleteIcon/IncompleteIcon.tsx';
 import {
   ListWrapper,
-  ListContainer,
   EditInput,
   ConfigurationButton,
   TaskList,
   TaskStatus, TaskWrapper, ConfigurationButtonWrapper,
 } from '@/components/ui/TodoList/TodoList.css';
+import SaveIcon from '@/components/icons/SaveIcon';
+import CancelIcon from '@/components/icons/CancelIcon';
 
 const TodoList: React.FC = () => {
   const { todos, dispatch } = useTodos();
@@ -38,16 +39,19 @@ const TodoList: React.FC = () => {
       {todos.map(todo => (
         <li  key={todo.id}>
           {editTodoId === todo.id ? (
-            <div className={ListContainer}  >
+            <div className={TaskWrapper}  >
               <input
                 className={EditInput}
                 type="text"
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
               />
-              <button onClick={() => handleUpdate(todo.id)}>Save</button>
-              <button onClick={() => setEditTodoId(null)}>Cancel</button>
-            </div>
+              <div className={ConfigurationButtonWrapper}  >
+              <button className={ConfigurationButton} onClick={() => handleUpdate(todo.id)}><SaveIcon/></button>
+
+              <button className={ConfigurationButton} onClick={() => setEditTodoId(null)}><CancelIcon/></button>
+              </div>
+              </div>
           ) : (
             <div className={TaskWrapper}>
               <span className={todo.completed ? TaskList[TaskStatus.COMPLETED]:TaskList[TaskStatus.PENDING]}>
