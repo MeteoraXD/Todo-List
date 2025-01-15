@@ -6,7 +6,6 @@ globalStyle(':root', {
   fontWeight: 400,
   colorScheme: 'light dark',
   color: 'rgba(255, 255, 255, 0.87)',
-  backgroundColor: '#242424',
   fontSynthesis: 'none',
   textRendering: 'optimizeLegibility',
   WebkitFontSmoothing: 'antialiased',

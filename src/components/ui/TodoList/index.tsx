@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 
-import { useTodos } from '@/context/TodoContext';
+import useTodos from '@/context/TodoContext';
 import { Todo } from '@/data/DataModel/dataModel.ts';
-
+import DeleteIcon from '@/components/icons/DeleteIcon';
+import EditIcon from '@/components/icons/EditIcon/EditIcon.tsx';
+import CompletedIcon from '@/components/icons/CompletedIcon';
+import InCompletedIcon from '@/components/icons/IncompleteIcon/IncompleteIcon.tsx';
+import {
+  ListWrapper,
+  ListContainer,
+  EditInput,
+  ConfigurationButton,
+  TaskList,
+  TaskStatus, TaskWrapper, ConfigurationButtonWrapper,
+} from '@/components/ui/TodoList/TodoList.css';
 
 const TodoList: React.FC = () => {
   const { todos, dispatch } = useTodos();
@@ -23,32 +34,35 @@ const TodoList: React.FC = () => {
   };
 
   return (
-    <ul>
+    <ul className={ListWrapper} >
       {todos.map(todo => (
-        <li key={todo.id}>
+        <li  key={todo.id}>
           {editTodoId === todo.id ? (
-            <>
+            <div className={ListContainer}  >
               <input
+                className={EditInput}
                 type="text"
                 value={editText}
                 onChange={(e) => setEditText(e.target.value)}
               />
               <button onClick={() => handleUpdate(todo.id)}>Save</button>
               <button onClick={() => setEditTodoId(null)}>Cancel</button>
-            </>
+            </div>
           ) : (
-            <>
-              <span
-                style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}
-                onClick={() => dispatch({ type: 'TOGGLE_TODO', payload: todo.id })}
-              >
+            <div className={TaskWrapper}>
+              <span className={todo.completed ? TaskList[TaskStatus.COMPLETED]:TaskList[TaskStatus.PENDING]}>
                 {todo.text}
               </span>
-              <button onClick={() => handleEdit(todo)}>Edit</button>
-              <button onClick={() => dispatch({ type: 'DELETE_TODO', payload: todo.id })}>
-                Delete
+              <div className={ConfigurationButtonWrapper} >
+              <button onClick={() => handleEdit(todo)} className={ConfigurationButton} ><EditIcon/></button>
+              <button  className={ConfigurationButton} onClick={() => dispatch({ type: 'DELETE_TODO', payload: todo.id })}>
+                <DeleteIcon/>
               </button>
-            </>
+              <button  className={ConfigurationButton} onClick={() => dispatch({ type: 'TOGGLE_TODO', payload: todo.id })}>
+                {todo.completed ? <InCompletedIcon/> : <CompletedIcon/>}
+              </button>
+              </div>
+            </div>
           )}
         </li>
       ))}

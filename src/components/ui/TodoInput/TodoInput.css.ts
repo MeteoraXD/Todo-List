@@ -4,13 +4,15 @@ import { vars } from '@/styles/theme.css.ts';
 
 const todoInputWrapper = style({
   display: 'flex',
-  gap : "3rem",
-  margin: "1.5rem 0"
+  gap : "1rem",
+  marginTop: "1.5rem"
 });
 
 const inputSection = style({
-  padding : "5px",
+  padding : "10px",
   color : vars.colors.primary.white,
+  borderRadius  : '5px',
+  border: 'none',
 })
 
 const addButton = style({
@@ -18,7 +20,7 @@ const addButton = style({
   borderRadius: "5px",
   color : vars.colors.primary.black,
   fontSize: '14px',
-  padding: '10px 20px',
+  padding: '5px ',
   background: vars.colors.primary.white,
 
 });

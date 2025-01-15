@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import LogInView from '../components/ui/Auth/AuthView/LoginView'
 
-import SessionSwapper from '@/components/ui/SessionSwapper';
-import '@/styles/global.css.ts';
-import TodoProvider  from '@/context/TodoContext';
-import TodoInput from '@/components/ui/TodoInput';
-import TodoList from '@/components/ui/TodoList';
-import KillButton from '@/components/ui/KillButton';
-
+import TodoView from '@/components/ui/TodoView/index.tsx';
 
 const App: React.FC = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+
+  const handleLoginSuccess = () => {
+    setIsAuthenticated(true);
+  };
+
   return (
-    <TodoProvider>
-      <h1>Todo List</h1>
-      <SessionSwapper />
-      <TodoInput />
-      <TodoList />
-      <KillButton/>
-    </TodoProvider>
+    <>
+      {isAuthenticated ? (
+        <TodoView />
+      ) : (
+        <LogInView onLoginSuccess={handleLoginSuccess} />
+      )}
+    </>
   );
 };
 

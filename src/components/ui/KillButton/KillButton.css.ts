@@ -8,6 +8,8 @@ const killButtonCss = style({
   fontSize: '14px',
   padding: '10px 20px',
   background: vars.colors.primary.white,
+  cursor: 'pointer',
+  borderRadius: '5px',
 });
 
 export  { killButtonCss };
