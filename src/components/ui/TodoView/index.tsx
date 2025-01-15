@@ -6,15 +6,16 @@ import TodoList from '@/components/ui/TodoList';
 import KillButton from '@/components/ui/KillButton';
 import TodoProvider from '@/providers/TodoProvider';
 import { TodoTitle, TodoViewWrapper } from '@/components/ui/TodoView/TodoView.css.ts';
+import Logout from '@/components/ui/Auth/LogOut/Logout.tsx';
 
 
 const TodoView: React.FC = () => {
   return (
 <div className={TodoViewWrapper} >
       <TodoProvider>
-        <Navbar  >
+        <div  >
           <Logout/>
-        </Navbar>
+        </div>
         <h1 className={TodoTitle} > TODOLIST</h1>
         <SessionSwapper />
         <TodoInput />
