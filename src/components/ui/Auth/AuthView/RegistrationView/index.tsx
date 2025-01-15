@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 
 import {
   RegistrationWrapper,
@@ -6,17 +6,18 @@ import {
   RegistrationForm,
   RegistrationInput,
   RegistrationSubmitButton,
-} from "@/components/ui/Auth/AuthView/RegistrationView/RegistrationView.css";
+  RegistrationLabel,
+} from '@/components/ui/Auth/AuthView/RegistrationView/RegistrationView.css';
+import { ErrorMessage } from '@/components/ui/Auth/AuthView/LoginView/LoginView.css.ts';
 
 const RegistrationView = () => {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
   });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -25,86 +26,73 @@ const RegistrationView = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Example validation logic
     if (!formData.email || !formData.password) {
-      setErrorMessage("Email and Password are required.");
-      setSuccessMessage(null);
-    } else {
-      setErrorMessage(null);
-      setSuccessMessage("Registration successful!");
+      setErrorMessage('Email and Password are required.');
+
     }
   };
 
   return (
     <div className={RegistrationWrapper}>
-      <div className={RegistrationForm}>
+      <form className={RegistrationForm} onSubmit={handleSubmit}>
         <h2 className={RegistrationTitle}>Register</h2>
 
-        <form onSubmit={handleSubmit}>
-          <label>
-            First Name:
-            <input
-              className={RegistrationInput}
-              type="text"
-              name="firstName"
-              placeholder="Enter your first name"
-              value={formData.firstName}
-              onChange={handleInputChange}
-            />
-          </label>
+        <label className={RegistrationLabel}>
+          First Name: </label>
 
-          <label>
-            Last Name:
-            <input
-              className={RegistrationInput}
-              type="text"
-              name="lastName"
-              placeholder="Enter your last name"
-              value={formData.lastName}
-              onChange={handleInputChange}
-            />
-          </label>
+        <input
+          className={RegistrationInput}
+          type="text"
+          name="firstName"
+          placeholder="Enter your first name"
+          
+          value={formData.firstName}
+          onChange={handleInputChange}
+        />
 
-          <label>
-            Email:
-            <input
-              className={RegistrationInput}
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleInputChange}
-            />
-          </label>
+        <label className={RegistrationLabel}>
+          Last Name: </label>
 
-          <label>
-            Password:
-            <input
-              className={RegistrationInput}
-              type="password"
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleInputChange}
-            />
-          </label>
+        <input
+          className={RegistrationInput}
+          type="text"
+          name="lastName"
+          placeholder="Enter your last name"
+          value={formData.lastName}
+          onChange={handleInputChange}
+        />
 
-          {errorMessage && (
-            <div style={{ color: "red", marginBottom: "10px" }}>
-              {errorMessage}
-            </div>
-          )}
-          {successMessage && (
-            <div style={{ color: "green", marginBottom: "10px" }}>
-              {successMessage}
-            </div>
-          )}
+        <label className={RegistrationLabel}>
+          Email: </label>
 
-          <button className={RegistrationSubmitButton} type="submit">
-            Register
-          </button>
-        </form>
-      </div>
+        <input
+          className={RegistrationInput}
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          value={formData.email}
+          onChange={handleInputChange}
+        />
+
+        <label className={RegistrationLabel}>
+          Password: </label>
+
+        <input
+          className={RegistrationInput}
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          value={formData.password}
+          onChange={handleInputChange}
+        />
+
+        {errorMessage && <p className={ErrorMessage}>{errorMessage}</p>}
+
+
+        <button className={RegistrationSubmitButton} type="submit">
+          Register
+        </button>
+      </form>
     </div>
   );
 };

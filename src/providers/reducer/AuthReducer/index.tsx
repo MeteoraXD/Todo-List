@@ -1,4 +1,5 @@
 import { AuthState, AuthAction, AuthActionType } from '@/data/AuthModel/index.ts';
+
 export const initialState: AuthState = {
   isLoggedIn: false,
   currentUser: null,
@@ -7,7 +8,6 @@ export const initialState: AuthState = {
   isLoading: false,
 };
 
-// Reducer function to manage authentication actions
 export const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
     case AuthActionType.LOGIN_SUCCESS:
@@ -57,12 +57,6 @@ export const authReducer = (state: AuthState, action: AuthAction): AuthState => 
       return {
         ...state,
         isLoading: action.payload,
-      };
-    case AuthActionType.CLEAR_MESSAGE:
-      return {
-        ...state,
-        message: null,
-        error: null,
       };
     default:
       return state;

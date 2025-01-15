@@ -29,7 +29,6 @@ export enum AuthActionType {
   REGISTER_ERROR = 'REGISTER_ERROR',
   LOGOUT = 'LOGOUT',
   SET_LOADING = 'SET_LOADING',
-  CLEAR_MESSAGE = 'CLEAR_MESSAGE'
 }
 
 export type AuthAction =
@@ -39,7 +38,6 @@ export type AuthAction =
   | { type: AuthActionType.REGISTER_ERROR; payload: string }
   | { type: AuthActionType.LOGOUT }
   | { type: AuthActionType.SET_LOADING; payload: boolean }
-  | { type: AuthActionType.CLEAR_MESSAGE };
 
 export interface AuthContextType {
   state: AuthState;

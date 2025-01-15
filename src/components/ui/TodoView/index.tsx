@@ -10,21 +10,23 @@ import Logout from '@/components/ui/Auth/LogOut/Logout.tsx';
 
 
 const TodoView: React.FC = () => {
+
   return (
-<div className={TodoViewWrapper} >
+    <div className={TodoViewWrapper}>
       <TodoProvider>
-        <div  >
-          <Logout/>
+        <div>
+          <Logout />
         </div>
-        <h1 className={TodoTitle} > TODO LIST</h1>
+        <h1 className={TodoTitle}> TODO LIST</h1>
+
         <SessionSwapper />
         <TodoList />
         <TodoInput />
 
-        <KillButton/>
+        <KillButton />
       </TodoProvider>
 
-</div>
+    </div>
   );
 };
 

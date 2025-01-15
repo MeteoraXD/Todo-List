@@ -6,6 +6,7 @@ export interface Todo {
   completed: boolean;
 }
 
+
 export interface TodoContextType {
   todos: Todo[];
   dispatch: React.Dispatch<TodoAction>;

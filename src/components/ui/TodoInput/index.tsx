@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 
 import useTodos from '@/context/TodoContext';
 import { addButton, inputSection, todoInputWrapper } from '@/components/ui/TodoInput/TodoInput.css.ts';
+import AddIcon from '@/components/icons/AddIcon';
 
-const TodoInput: React.FC = () => {
+const TodoInput: React.FunctionComponent = () => {
   const { dispatch } = useTodos();
   const [text, setText] = useState<string>('');
 
@@ -13,6 +14,12 @@ const TodoInput: React.FC = () => {
       setText('');
     }
   };
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      handleAddTodo();
+    }
+
+  };
 
 
   return (
@@ -20,12 +27,13 @@ const TodoInput: React.FC = () => {
       <input
         className={inputSection}
         type="text"
-
+        onKeyDown={handleKeyDown}
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a todo.."
       />
-      <button className={addButton} onClick={handleAddTodo}>Add</button>
+      <button className={addButton} onClick={handleAddTodo}
+      ><AddIcon /></button>
     </div>
   );
 };
