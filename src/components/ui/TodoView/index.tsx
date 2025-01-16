@@ -17,7 +17,7 @@ const TodoView: React.FC = () => {
         <div>
           <Logout />
         </div>
-        <h1 className={TodoTitle}> TODO LIST</h1>
+        <h1 className={TodoTitle}> TASK LIST</h1>
 
         <SessionSwapper />
         <TodoList />
