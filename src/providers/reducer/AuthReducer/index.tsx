@@ -1,4 +1,4 @@
-import { AuthState, AuthAction, AuthActionType } from '@/data/AuthModel/index.ts';
+import { AuthState, AuthAction, AuthActionType } from '@/data/AuthModel';
 
 export const initialState: AuthState = {
   isLoggedIn: false,

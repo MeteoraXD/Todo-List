@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { Link } from '@tanstack/react-router';
 
+import useRegister from '@/hooks/RegisterHook';
 import {
   RegistrationWrapper,
   RegistrationTitle,
@@ -7,64 +8,20 @@ import {
   RegistrationInput,
   RegistrationSubmitButton,
   RegistrationLabel,
+  SuccessResponseMessage,
+  ErrorResponseMessage,
 } from '@/components/ui/Auth/AuthView/RegistrationView/RegistrationView.css';
-import { ErrorMessage } from '@/components/ui/Auth/AuthView/LoginView/LoginView.css.ts';
 
 const RegistrationView = () => {
-  const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
-  });
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!formData.email || !formData.password) {
-      setErrorMessage('Email and Password are required.');
-
-    }
-  };
+  const { formData, errorMessage, isRegistered, handleInputChange, handleSubmit } = useRegister();
 
   return (
     <div className={RegistrationWrapper}>
       <form className={RegistrationForm} onSubmit={handleSubmit}>
         <h2 className={RegistrationTitle}>Register</h2>
 
-        <label className={RegistrationLabel}>
-          First Name: </label>
 
-        <input
-          className={RegistrationInput}
-          type="text"
-          name="firstName"
-          placeholder="Enter your first name"
-          
-          value={formData.firstName}
-          onChange={handleInputChange}
-        />
-
-        <label className={RegistrationLabel}>
-          Last Name: </label>
-
-        <input
-          className={RegistrationInput}
-          type="text"
-          name="lastName"
-          placeholder="Enter your last name"
-          value={formData.lastName}
-          onChange={handleInputChange}
-        />
-
-        <label className={RegistrationLabel}>
-          Email: </label>
-
+        <label className={RegistrationLabel}>Email:</label>
         <input
           className={RegistrationInput}
           type="email"
@@ -74,9 +31,7 @@ const RegistrationView = () => {
           onChange={handleInputChange}
         />
 
-        <label className={RegistrationLabel}>
-          Password: </label>
-
+        <label className={RegistrationLabel}>Password:</label>
         <input
           className={RegistrationInput}
           type="password"
@@ -86,13 +41,19 @@ const RegistrationView = () => {
           onChange={handleInputChange}
         />
 
-        {errorMessage && <p className={ErrorMessage}>{errorMessage}</p>}
+        {errorMessage && <p className={ErrorResponseMessage}>{errorMessage}</p>}
 
+        {isRegistered && <p className={SuccessResponseMessage} style={{ color: 'green' }}>Registration successful!</p>}
 
         <button className={RegistrationSubmitButton} type="submit">
           Register
         </button>
+
       </form>
+
+      <Link to={'/'}>
+        Login
+      </Link>
     </div>
   );
 };

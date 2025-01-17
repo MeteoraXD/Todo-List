@@ -1,7 +1,7 @@
 import React, { PropsWithChildren, useEffect, useReducer, useState } from 'react';
 
 import { todoReducer } from '@/providers/reducer/todoReducer.ts';
-import { getTodos, saveTodos } from '@/utils/Storage';
+import { getTodos, saveTodos } from '@/utils/Storage/TodoStorage';
 import { TodoContext } from '@/context/TodoContext';
 
 type StorageType = 'local' | 'session';
@@ -13,10 +13,9 @@ const TodoProvider: React.FunctionComponent<PropsWithChildren> = ({ children }) 
   const [todos, dispatch] = useReducer(todoReducer, getTodos(session, storageType));
 
 
-
   useEffect(() => {
     saveTodos(session, todos, storageType);
-  }, [todos, session, storageType])
+  }, [todos, session, storageType]);
 
   const switchSession = (newSession: string) => {
     setSession(newSession);
@@ -37,4 +36,4 @@ const TodoProvider: React.FunctionComponent<PropsWithChildren> = ({ children }) 
   );
 };
 
-export  default TodoProvider
+export default TodoProvider;

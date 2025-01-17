@@ -1,54 +1,44 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 
-interface User {
-  email: string;
-  password: string;
-
-}
-
-const staticUsers: User[] = [
-  { email: 'user1@user.com', password: 'root12345' },
-  { email: 'user2@user.com', password: 'root12345' },
-  { email: 'user3@user.com', password: 'root12345' },
-];
+const AUTH_KEY = 'auth_users';
+const AUTH_USER_KEY = 'authUser';
 
 const useLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const storedUser = localStorage.getItem('authUser');
+    const storedUser = localStorage.getItem(AUTH_USER_KEY);
     if (storedUser) {
       setIsAuthenticated(true);
+      navigate({ to: '/todoview' });
     }
-  }, []);
-
+  }, [navigate]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
 
+    const users = JSON.parse(localStorage.getItem(AUTH_KEY) || '[]');
 
-    const matchedUser = staticUsers.find(
-      (user) => user.email === email && user.password === password,
+    const matchedUser = users.find(
+      (user: { email: string; password: string }) =>
+        user.email === email && atob(user.password) === password,
     );
 
     if (matchedUser) {
-      setErrorMessage('');
-      navigate({ to: '/todoview' });
+      setErrorMessage(null);
       setIsAuthenticated(true);
-      localStorage.setItem('authUser', JSON.stringify({ email }));
-      const encodedPassword = btoa(password);
-      localStorage.setItem('password', encodedPassword);
+      localStorage.setItem(AUTH_USER_KEY, JSON.stringify({ email }));
+      navigate({ to: '/todoview' });
     } else {
       setErrorMessage('Invalid email or password.');
       setIsAuthenticated(false);
     }
   };
-
 
   return {
     email,

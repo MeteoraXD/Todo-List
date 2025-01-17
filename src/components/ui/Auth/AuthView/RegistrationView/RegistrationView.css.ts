@@ -7,6 +7,12 @@ const RegistrationWrapper = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundColor: 'rgba(16,10,64,0.84)',
+  padding: '4rem',
+  width: '100%',
+  maxWidth: '360px',
+  borderRadius: '8px',
+  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
 });
 
 const RegistrationTitle = style({
@@ -22,18 +28,14 @@ const RegistrationLabel = style({
   fontSize: '14px',
   fontWeight: '600',
   marginBottom: '8px',
+
 });
 
 const RegistrationForm = style({
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   width: '100%',
-  maxWidth: '360px',
-  padding: '4rem',
-  borderRadius: '8px',
-  backgroundColor: 'rgba(16,10,64,0.84)',
-  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+
 });
 
 const RegistrationInput = style({
@@ -56,13 +58,28 @@ const RegistrationSubmitButton = style({
   cursor: 'pointer',
   borderRadius: '4px',
   transition: 'background-color 0.3s, transform 0.2s',
-  marginTop: '10px',
+  margin: '10px 0',
 
 
   ':hover': {
     backgroundColor: '#fff 80%',
     transform: 'scale(1.05)',
   },
+});
+
+const ErrorResponseMessage = style({
+  fontSize: '14px',
+  marginBottom: '20px',
+  textAlign: 'center',
+  color: vars.colors.primary.errorRed,
+});
+
+const SuccessResponseMessage = style({
+  color: vars.colors.primary.successGreen,
+  fontSize: '14px',
+  marginBottom: '20px',
+  textAlign: 'center',
+
 });
 
 export {
@@ -72,4 +89,6 @@ export {
   RegistrationForm,
   RegistrationInput,
   RegistrationSubmitButton,
+  SuccessResponseMessage,
+  ErrorResponseMessage,
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from '@tanstack/react-router';
 
 import useLogin from '@/hooks/LoginHook';
 import {
@@ -49,6 +50,7 @@ const LogInView: React.FC = () => {
         </button>
         {errorMessage && <p className={ErrorMessage}>{errorMessage}</p>}
       </form>
+      <Link to={'/registration'}>Dont have an account?</Link>
 
     </div>
   );

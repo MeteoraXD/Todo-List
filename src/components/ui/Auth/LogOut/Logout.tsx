@@ -1,13 +1,14 @@
 import { useNavigate } from '@tanstack/react-router';
 
 import LogoutIcon from '@/components/icons/LogoutIcon';
-import { LogoutButton, LogoutButtonWrapper } from '@/components/ui/Auth/LogOut/LogoutButton.css.tsx';
+import { LogoutButton, LogoutButtonWrapper } from '@/components/ui/Auth/LogOut/LogoutButton.css.ts';
 
+const AUTH_USER_KEY = 'authUser';
 const Logout = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem(AUTH_USER_KEY);
     navigate({ to: '/' });
   };
   return (<div className={LogoutButtonWrapper}>
