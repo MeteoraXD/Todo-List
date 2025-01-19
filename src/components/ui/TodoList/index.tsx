@@ -46,7 +46,7 @@ const TodoList: React.FunctionComponent = () => {
                 className={EditInput}
                 type="text"
                 value={editText}
-                // onKeyDown={handleKeyDown}
+                
                 onChange={(e) => setEditText(e.target.value)}
               />
               <div className={ConfigurationButtonWrapper}>

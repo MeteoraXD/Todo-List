@@ -1,6 +1,6 @@
 import React, { PropsWithChildren, useEffect, useReducer, useState } from 'react';
 
-import { todoReducer } from '@/providers/reducer/todoReducer.ts';
+import { todoReducer } from '@/providers/reducer/TodoReducer/todoReducer.ts';
 import { getTodos, saveTodos } from '@/utils/Storage/TodoStorage';
 import { TodoContext } from '@/context/TodoContext';
 

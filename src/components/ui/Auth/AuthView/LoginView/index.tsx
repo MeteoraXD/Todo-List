@@ -10,6 +10,7 @@ import {
   LoginForm,
   LoginInput,
   LoginButton,
+  LoginSubHeading,
 } from '@/components/ui/Auth/AuthView/LoginView/LoginView.css';
 
 
@@ -29,6 +30,7 @@ const LogInView: React.FC = () => {
 
       <form className={LoginForm} onSubmit={handleLogin}>
         <h1 className={LoginTitle}>Login</h1>
+        <h3 className={LoginSubHeading}>Enter your credentials to Login.</h3>
         <label className={LoginInputLabel}>Email</label>
         <input
           className={LoginInput}
@@ -49,8 +51,8 @@ const LogInView: React.FC = () => {
           Login
         </button>
         {errorMessage && <p className={ErrorMessage}>{errorMessage}</p>}
+        <Link to={'/registration'}>Dont have an account?</Link>
       </form>
-      <Link to={'/registration'}>Dont have an account?</Link>
 
     </div>
   );

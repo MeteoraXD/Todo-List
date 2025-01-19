@@ -17,7 +17,7 @@ const ListWrapper = style({
 
 const EditInput = style({
   padding: '10px',
-  color: vars.colors.primary.white,
+  color: vars.colors.base.black,
   background: 'rgba(26,14,199,0.84)',
   borderRadius: '5px',
   border: 'none',
@@ -50,10 +50,10 @@ const TaskWrapper = style({
 
 const TaskList = {
   [TaskStatus.COMPLETED]: style({
-    color: vars.colors.primary.successGreen,
+    color: vars.colors.success.dark,
   }),
   [TaskStatus.PENDING]: style({
-    color: vars.colors.primary.white,
+    color: vars.colors.base.black,
   }),
 
 

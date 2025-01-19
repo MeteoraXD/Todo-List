@@ -5,16 +5,18 @@ import { vars } from '@/styles/theme.css.ts';
 const todoInputWrapper = style({
   display: 'flex',
   gap: '0.5rem',
-  
   margin: '1.5rem 0 ',
 });
 
 const inputSection = style({
-  padding: '10px',
-  color: vars.colors.primary.white,
-  borderRadius: '5px',
+  fontSize: '16px',
+  padding: '10px 1px',
+  marginBottom: '20px',
+  color: vars.colors.base.black,
+  outline: 'none',
   border: 'none',
-  background: 'rgba(24,16,110,0.84)',
+  borderBottom: '1px solid black',
+  transition: 'border-color 0.3s',
 });
 
 const addButton = style({

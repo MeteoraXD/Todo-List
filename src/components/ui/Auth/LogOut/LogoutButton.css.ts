@@ -12,6 +12,9 @@ const LogoutButton = style({
   gap: '10px',
   background: 'none',
   cursor: 'pointer',
+  ':hover': {
+    transform: 'scale(1.1)',
+  },
 });
 
 export {

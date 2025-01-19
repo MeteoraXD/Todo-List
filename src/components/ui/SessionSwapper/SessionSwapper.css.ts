@@ -7,10 +7,11 @@ const SwapperWrapper = style({
   flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
-  gap: "2rem"
+  gap: '2rem',
 });
 const SwapperLabel = style({
-  color: vars.colors.primary.white,
+  color: vars.colors.greySea.dark
+  ,
 
 });
 const SwapperInput = style({});
@@ -19,4 +20,4 @@ export {
   SwapperWrapper,
   SwapperLabel,
   SwapperInput,
-}
+};

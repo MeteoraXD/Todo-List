@@ -7,15 +7,18 @@ const LoginWrapper = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-
 });
 
 const LoginTitle = style({
   fontSize: '24px',
   fontWeight: 'bold',
   lineHeight: '30px',
-  color: vars.colors.primary.white,
-  marginBottom: '20px',
+  color: vars.colors.base.black,
+  // marginBottom: '20px',
+});
+const LoginSubHeading = style({
+  fontSize: '14px',
+  color: vars.colors.greySea.dark,
 });
 
 const LoginForm = style({
@@ -26,12 +29,11 @@ const LoginForm = style({
   maxWidth: '360px',
   padding: '4rem',
   borderRadius: '8px',
-  backgroundColor: 'rgba(16,10,64,0.84)',
-  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+  boxShadow: ' rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;',
 });
 
 const LoginInputLabel = style({
-  color: vars.colors.primary.white,
+  color: vars.colors.base.black,
   fontSize: '14px',
   fontWeight: '600',
   marginBottom: '8px',
@@ -39,31 +41,30 @@ const LoginInputLabel = style({
 
 const LoginInput = style({
   fontSize: '16px',
-  padding: '12px 16px',
+  padding: '10px 1px',
   marginBottom: '20px',
-  borderRadius: '4px',
-  background: 'rgba(24,16,110,0.84)',
-  color: vars.colors.primary.white,
+  color: vars.colors.base.black,
   outline: 'none',
   border: 'none',
+  borderBottom: '1px solid black',
   transition: 'border-color 0.3s',
+
 
 });
 
 const LoginButton = style({
   border: 'none',
-  color: vars.colors.primary.black,
+  color: vars.colors.base.white,
   fontSize: '16px',
   padding: '12px 24px',
-  background: '#fff',
+  background: vars.colors.primary.accent,
   cursor: 'pointer',
   borderRadius: '4px',
   transition: 'background-color 0.3s, transform 0.2s',
-  marginTop: '10px',
+  margin: '10px 0',
 
 
   ':hover': {
-    backgroundColor: '#fff 80%',
     transform: 'scale(1.05)',
   },
 
@@ -77,4 +78,4 @@ const ErrorMessage = style({
   textAlign: 'center',
 });
 
-export { LoginWrapper, ErrorMessage, LoginInputLabel, LoginTitle, LoginForm, LoginInput, LoginButton };
+export { LoginWrapper, ErrorMessage, LoginSubHeading, LoginInputLabel, LoginTitle, LoginForm, LoginInput, LoginButton };

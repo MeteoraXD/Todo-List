@@ -20,7 +20,7 @@ const KillButton = () => {
   };
 
 
-  return (<button onClick={killSessionHandler} className={killButtonCss}>KillButton</button>);
+  return (<button onClick={killSessionHandler} className={killButtonCss}>Reset Session</button>);
 };
 
 export default KillButton;

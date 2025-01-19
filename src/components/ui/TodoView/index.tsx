@@ -16,14 +16,15 @@ const TodoView: React.FC = () => {
       <TodoProvider>
         <div>
           <Logout />
+
         </div>
         <h1 className={TodoTitle}> TASK LIST</h1>
 
         <SessionSwapper />
         <TodoList />
         <TodoInput />
-
         <KillButton />
+
       </TodoProvider>
 
     </div>

@@ -1,16 +1,15 @@
 import { globalStyle } from '@vanilla-extract/css';
 
+import { vars } from '@/styles/theme.css.ts';
+
 globalStyle(':root', {
   fontFamily: '"Roboto", sans-serif',
   lineHeight: '1.5',
   fontWeight: 400,
-  colorScheme: 'light dark',
   color: 'rgba(255, 255, 255, 0.87)',
   fontSynthesis: 'none',
-  textRendering: 'optimizeLegibility',
-  WebkitFontSmoothing: 'antialiased',
   MozOsxFontSmoothing: 'grayscale',
-  background: 'linear-gradient(135deg, #100a40 0%, #3b1e6f 100%)',
+  backgroundColor: vars.colors.primary.main,
   boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.1)',
 });
 
@@ -25,7 +24,7 @@ globalStyle('a:hover', {
   color: '#535bf2',
 });
 globalStyle('input::placeholder', {
-  color: '#ffffff',
+  color: vars.colors.primary.placeholder,
 });
 
 globalStyle('body', {

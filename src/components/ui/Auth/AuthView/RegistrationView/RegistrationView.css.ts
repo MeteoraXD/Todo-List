@@ -7,24 +7,18 @@ const RegistrationWrapper = style({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
-  backgroundColor: 'rgba(16,10,64,0.84)',
-  padding: '4rem',
-  width: '100%',
-  maxWidth: '360px',
-  borderRadius: '8px',
-  boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
 });
 
 const RegistrationTitle = style({
   fontSize: '24px',
   fontWeight: 'bold',
   lineHeight: '30px',
-  color: vars.colors.primary.white,
+  color: vars.colors.base.black,
   marginBottom: '20px',
 });
 
 const RegistrationLabel = style({
-  color: vars.colors.primary.white,
+  color: vars.colors.base.black,
   fontSize: '14px',
   fontWeight: '600',
   marginBottom: '8px',
@@ -34,27 +28,31 @@ const RegistrationLabel = style({
 const RegistrationForm = style({
   display: 'flex',
   flexDirection: 'column',
+  justifyContent: 'center',
   width: '100%',
-
+  maxWidth: '360px',
+  padding: '4rem',
+  borderRadius: '8px',
+  boxShadow: ' rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;',
 });
 
 const RegistrationInput = style({
   fontSize: '16px',
-  padding: '12px 16px',
+  padding: '10px 1px',
   marginBottom: '20px',
-  borderRadius: '4px',
-  background: 'rgba(24,16,110,0.84)',
-  color: vars.colors.primary.white,
+  color: vars.colors.base.black,
   outline: 'none',
   border: 'none',
+  borderBottom: '1px solid black',
   transition: 'border-color 0.3s',
+
 });
 const RegistrationSubmitButton = style({
   border: 'none',
-  color: vars.colors.primary.black,
+  color: vars.colors.base.white,
   fontSize: '16px',
   padding: '12px 24px',
-  background: '#fff',
+  background: vars.colors.primary.accent,
   cursor: 'pointer',
   borderRadius: '4px',
   transition: 'background-color 0.3s, transform 0.2s',
@@ -62,7 +60,6 @@ const RegistrationSubmitButton = style({
 
 
   ':hover': {
-    backgroundColor: '#fff 80%',
     transform: 'scale(1.05)',
   },
 });
@@ -71,11 +68,11 @@ const ErrorResponseMessage = style({
   fontSize: '14px',
   marginBottom: '20px',
   textAlign: 'center',
-  color: vars.colors.primary.errorRed,
+  color: vars.colors.error.dark,
 });
 
 const SuccessResponseMessage = style({
-  color: vars.colors.primary.successGreen,
+  color: vars.colors.success.dark,
   fontSize: '14px',
   marginBottom: '20px',
   textAlign: 'center',

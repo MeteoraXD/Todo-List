@@ -21,7 +21,7 @@ const RegistrationView = () => {
         <h2 className={RegistrationTitle}>Register</h2>
 
 
-        <label className={RegistrationLabel}>Email:</label>
+        <label className={RegistrationLabel}>Email</label>
         <input
           className={RegistrationInput}
           type="email"
@@ -31,7 +31,7 @@ const RegistrationView = () => {
           onChange={handleInputChange}
         />
 
-        <label className={RegistrationLabel}>Password:</label>
+        <label className={RegistrationLabel}>Password</label>
         <input
           className={RegistrationInput}
           type="password"
@@ -49,11 +49,11 @@ const RegistrationView = () => {
           Register
         </button>
 
-      </form>
+        <Link to={'/'}>
+          Login
+        </Link>
 
-      <Link to={'/'}>
-        Login
-      </Link>
+      </form>
     </div>
   );
 };

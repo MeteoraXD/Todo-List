@@ -2,26 +2,42 @@ import {
 
   createThemeContract,
 
-} from "@vanilla-extract/css";
+} from '@vanilla-extract/css';
 
 const colors = createThemeContract({
   primary: {
-    white: null,
-    black: null,
-    errorRed :null,
-    successGreen : null,
-    buttonTeal : null,
+    text: null,
+    default: null,
+    accent: null,
+    backdrop: null,
+    placeholder: null,
+    main: null,
+
   },
 
+  secondary: {
+    default: null,
 
-
-
-
+  },
+  greySea: {
+    light: null,
+    default: null,
+    dark: null,
+  },
+  base: {
+    white: null,
+    black: null,
+  },
+  error: {
+    dark: null,
+    light: null,
+  },
+  success: {
+    dark: null,
+    light: null,
+  },
 
 });
-
-
-
 
 
 export const vars = { colors };
