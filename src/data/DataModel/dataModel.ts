@@ -2,7 +2,6 @@ import React from 'react';
 
 export interface Todo {
   id: number;
-  userId: string;
   text: string;
   completed: boolean;
 }
