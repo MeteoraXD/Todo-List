@@ -6,13 +6,13 @@ export const todoReducer = (state: Todo[], action: TodoAction): Todo[] => {
       return [...state, { id: Date.now(), text: action.payload, completed: false }];
     case 'TOGGLE_TODO':
       return state.map(todo =>
-        todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo
+        todo.id === action.payload ? { ...todo, completed: !todo.completed } : todo,
       );
     case 'DELETE_TODO':
       return state.filter(todo => todo.id !== action.payload);
     case 'UPDATE_TODO':
       return state.map(todo =>
-        todo.id === action.payload.id ? { ...todo, text: action.payload.text } : todo
+        todo.id === action.payload.id ? { ...todo, text: action.payload.text } : todo,
       );
     case 'SET_TODOS':
       return action.payload;
