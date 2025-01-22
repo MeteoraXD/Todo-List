@@ -11,53 +11,77 @@ const ListWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   listStyle: 'none',
+  justifyItems: 'center',
+  alignItems: 'center',
   width: '100%',
 });
 
-
 const EditInput = style({
+  flex: 1,
   padding: '10px',
   color: vars.colors.base.black,
-  background: 'rgba(26,14,199,0.84)',
   borderRadius: '5px',
   border: 'none',
+  minWidth: 0,
 });
 
-const ConfigurationButton = style({
-  background: 'none',
+const ConfigurationEditButton = style({
+  background: vars.colors.success.light,
+  border: 'none',
+  padding: '5px',
+  borderRadius: '5px',
+  cursor: 'pointer',
+  whiteSpace: 'nowrap',
+
+});
+const ConfigurationDeleteButton = style({
+  background: vars.colors.error.light, padding: '5px',
+  borderRadius: '5px',
   border: 'none',
   cursor: 'pointer',
+  whiteSpace: 'nowrap',
+
 });
 
 const TaskWrapper = style({
   display: 'flex',
   alignItems: 'center',
-  justifyItems: 'space-between',
-  justifyContent: 'space-between',
-  height: '100%',
-  background: `linear-gradient(
-    135deg, 
-    rgba(24, 16, 110, 0.84) 0%, 
-    rgba(48, 32, 150, 0.7) 50%, 
-    rgba(72, 48, 190, 0.5) 100%
-  )`,
+  justifyContent: 'center',
+  background: '#FEFCFF',
   marginTop: '10px',
-  width: '95%',
+  width: '50vw',
   borderRadius: '5px',
-  maxHeight: '40px',
-  padding: '5px',
+  minHeight: '40px',
+  padding: '1rem',
+  gap: '20px',
+  boxShadow: 'rgba(0,0, 187, 0.7) 2px 0px 8px;',
 });
 
 const TaskList = {
   [TaskStatus.COMPLETED]: style({
     color: vars.colors.success.dark,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    flex: 1,
+    minWidth: 0,
   }),
   [TaskStatus.PENDING]: style({
     color: vars.colors.base.black,
+    flex: 1,
+    minWidth: 0,
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
   }),
-
-
 };
+const ConfigurationButton = style({
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  whiteSpace: 'nowrap',
+});
+
 const ConfigurationButtonWrapper = style({
   display: 'flex',
   flexDirection: 'row',
@@ -67,11 +91,13 @@ const ConfigurationButtonWrapper = style({
 
 export {
   ListWrapper,
-
   EditInput,
-  ConfigurationButton,
+  ConfigurationEditButton,
+  ConfigurationDeleteButton,
   TaskList,
   TaskStatus,
   TaskWrapper,
   ConfigurationButtonWrapper,
+  ConfigurationButton,
+
 };

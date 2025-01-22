@@ -10,6 +10,7 @@ import {
   RegistrationLabel,
   SuccessResponseMessage,
   ErrorResponseMessage,
+  RegistrationSubHeading,
 } from '@/components/ui/Auth/AuthView/RegistrationView/RegistrationView.css';
 
 const RegistrationView = () => {
@@ -19,6 +20,7 @@ const RegistrationView = () => {
     <div className={RegistrationWrapper}>
       <form className={RegistrationForm} onSubmit={handleSubmit}>
         <h2 className={RegistrationTitle}>Register</h2>
+        <h3 className={RegistrationSubHeading}>Please Register with your credentials.</h3>
 
 
         <label className={RegistrationLabel}>Email</label>
@@ -43,14 +45,16 @@ const RegistrationView = () => {
 
         {errorMessage && <p className={ErrorResponseMessage}>{errorMessage}</p>}
 
-        {isRegistered && <p className={SuccessResponseMessage} style={{ color: 'green' }}>Registration successful!</p>}
+        {isRegistered && <p className={SuccessResponseMessage}>Registration successful!</p>
+
+        }
 
         <button className={RegistrationSubmitButton} type="submit">
           Register
         </button>
 
         <Link to={'/'}>
-          Login
+          Already have an account
         </Link>
 
       </form>

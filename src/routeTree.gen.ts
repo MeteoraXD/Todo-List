@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as TodoviewImport } from './routes/todoview'
 import { Route as RegistrationImport } from './routes/registration'
+import { Route as LoginImport } from './routes/login'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -26,6 +27,12 @@ const TodoviewRoute = TodoviewImport.update({
 const RegistrationRoute = RegistrationImport.update({
   id: '/registration',
   path: '/registration',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const LoginRoute = LoginImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -44,6 +51,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginImport
       parentRoute: typeof rootRoute
     }
     '/registration': {
@@ -67,12 +81,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/todoview': typeof TodoviewRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/todoview': typeof TodoviewRoute
 }
@@ -80,27 +96,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/todoview': typeof TodoviewRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/registration' | '/todoview'
+  fullPaths: '/' | '/login' | '/registration' | '/todoview'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/registration' | '/todoview'
-  id: '__root__' | '/' | '/registration' | '/todoview'
+  to: '/' | '/login' | '/registration' | '/todoview'
+  id: '__root__' | '/' | '/login' | '/registration' | '/todoview'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
   RegistrationRoute: typeof RegistrationRoute
   TodoviewRoute: typeof TodoviewRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
   RegistrationRoute: RegistrationRoute,
   TodoviewRoute: TodoviewRoute,
 }
@@ -116,12 +135,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/login",
         "/registration",
         "/todoview"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/login": {
+      "filePath": "login.tsx"
     },
     "/registration": {
       "filePath": "registration.tsx"

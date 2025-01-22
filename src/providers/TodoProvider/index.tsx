@@ -2,16 +2,13 @@ import React, { PropsWithChildren, useEffect, useReducer, useState } from 'react
 
 import { todoReducer } from '@/providers/reducer/TodoReducer/todoReducer.ts';
 import { getTodos, saveTodos } from '@/utils/Storage/TodoStorage';
-import { TodoContext } from '@/context/TodoContext';
-
-type StorageType = 'local' | 'session';
-
+import TodoContext from '@/context/TodoContext';
+import { StorageType } from '@/data/DataModel/dataModel.ts';
 
 const TodoProvider: React.FunctionComponent<PropsWithChildren> = ({ children }) => {
   const [session, setSession] = useState<string>('default');
-  const [storageType, setStorageType] = useState<StorageType>('local');
+  const [storageType, setStorageType] = useState<StorageType>(StorageType.LOCAL);
   const [todos, dispatch] = useReducer(todoReducer, getTodos(session, storageType));
-
 
   useEffect(() => {
     saveTodos(session, todos, storageType);
@@ -35,5 +32,4 @@ const TodoProvider: React.FunctionComponent<PropsWithChildren> = ({ children }) 
     </TodoContext.Provider>
   );
 };
-
 export default TodoProvider;

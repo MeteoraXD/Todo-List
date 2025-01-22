@@ -3,7 +3,7 @@ import { AuthState, AuthAction, AuthActionType } from '@/data/AuthModel';
 export const initialState: AuthState = {
   isLoggedIn: false,
   currentUser: null,
-  error: null,
+  error: null,   // Ensure error is used in the reducer
   message: null,
   isLoading: false,
 };

@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from 'react';
 
 
 import { AuthAction, AuthState } from '@/data/AuthModel';
-import { initialState, authReducer } from '@/providers/reducer/AuthReducer/AuthReducer.ts'; // Assuming you have the reducer
+import { initialState, authReducer } from '@/providers/reducer/AuthReducer/AuthReducer.ts';
 
 const AuthContext = createContext<{
   state: AuthState;

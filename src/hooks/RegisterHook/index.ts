@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
+import { useNavigate } from '@tanstack/react-router';
 
 interface FormData {
   email: string;
@@ -12,6 +14,7 @@ const useRegister = () => {
   const [formData, setFormData] = useState<FormData>({ email: '', password: '' });
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isRegistered, setIsRegistered] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const AUTH_KEY = 'auth_users';
 
@@ -49,7 +52,7 @@ const useRegister = () => {
     const existingUsers: User[] = JSON.parse(localStorage.getItem(AUTH_KEY) || '[]');
 
     if (isEmailTaken(formData.email, existingUsers)) {
-      setErrorMessage('Email is already in use.');
+      toast.error('Email is already in use.');
       return;
     }
 
@@ -62,7 +65,10 @@ const useRegister = () => {
     localStorage.setItem(AUTH_KEY, JSON.stringify(updatedUsers));
 
     setIsRegistered(true);
+    navigate({ to: '/' });
     setFormData({ email: '', password: '' });
+    toast.success('Registration Completed successfully.');
+
   };
 
   return {

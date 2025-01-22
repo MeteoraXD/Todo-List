@@ -17,6 +17,7 @@ const colors = createThemeContract({
 
   secondary: {
     default: null,
+    light: null,
 
   },
   greySea: {

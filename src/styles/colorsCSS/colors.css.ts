@@ -14,6 +14,7 @@ const colorData = createTheme(colors, {
   },
   secondary: {
     default: '#8585ed',
+    light: '#c9b4c5',
 
   },
   greySea: {

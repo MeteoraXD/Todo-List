@@ -1,25 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-import useTodos from '@/context/TodoContext';
+import useTodos from '@/hooks/TodoHook/useTodos.ts';
 import { Todo } from '@/data/DataModel/dataModel.ts';
 import DeleteIcon from '@/components/icons/DeleteIcon';
 import EditIcon from '@/components/icons/EditIcon/EditIcon.tsx';
 import CompletedIcon from '@/components/icons/CompletedIcon';
-import InCompletedIcon from '@/components/icons/IncompleteIcon/IncompleteIcon.tsx';
+import UnCheckedIcon from '@/components/icons/UnCheckedIcon';
 import {
   ListWrapper,
   EditInput,
   ConfigurationButton,
   TaskList,
-  TaskStatus, TaskWrapper, ConfigurationButtonWrapper,
+  TaskStatus,
+  TaskWrapper,
+  ConfigurationButtonWrapper, ConfigurationDeleteButton, ConfigurationEditButton,
 } from '@/components/ui/TodoList/TodoList.css';
-import SaveIcon from '@/components/icons/SaveIcon';
-import CancelIcon from '@/components/icons/CancelIcon';
 
 const TodoList: React.FunctionComponent = () => {
   const { todos, dispatch } = useTodos();
   const [editTodoId, setEditTodoId] = useState<number | null>(null);
   const [editText, setEditText] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (editTodoId && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [editTodoId]);
 
   const handleEdit = (todo: Todo) => {
     setEditTodoId(todo.id);
@@ -32,43 +39,62 @@ const TodoList: React.FunctionComponent = () => {
       setEditTodoId(null);
       setEditText('');
     }
-
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent, id: number) => {
+    if (event.key === 'Enter') {
+      handleUpdate(id);
+    }
+  };
 
   return (
     <ul className={ListWrapper}>
+
       {todos.map(todo => (
         <li key={todo.id}>
           {editTodoId === todo.id ? (
             <div className={TaskWrapper}>
               <input
+                ref={inputRef}
                 className={EditInput}
                 type="text"
                 value={editText}
-                
                 onChange={(e) => setEditText(e.target.value)}
+                onKeyDown={(event) => handleKeyDown(event, todo.id)}
               />
               <div className={ConfigurationButtonWrapper}>
-                <button className={ConfigurationButton} onClick={() => handleUpdate(todo.id)}><SaveIcon /></button>
-
-                <button className={ConfigurationButton} onClick={() => setEditTodoId(null)}><CancelIcon /></button>
+                <button
+                  className={ConfigurationButton}
+                  onClick={() => handleUpdate(todo.id)}
+                >
+                  Save
+                </button>
+                <button
+                  className={ConfigurationButton}
+                  onClick={() => setEditTodoId(null)}
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           ) : (
             <div className={TaskWrapper}>
-              <span className={todo.completed ? TaskList[TaskStatus.COMPLETED] : TaskList[TaskStatus.PENDING]}>
-                {todo.text}
-              </span>
+    <span className={todo.completed ? TaskList[TaskStatus.COMPLETED] : TaskList[TaskStatus.PENDING]}>
+      {todo.text}
+      </span>
               <div className={ConfigurationButtonWrapper}>
-                <button onClick={() => handleEdit(todo)} className={ConfigurationButton}><EditIcon /></button>
-                <button className={ConfigurationButton}
-                        onClick={() => dispatch({ type: 'DELETE_TODO', payload: todo.id })}>
+                <button onClick={() => handleEdit(todo)} className={ConfigurationEditButton}><EditIcon /></button>
+                <button
+                  className={ConfigurationDeleteButton}
+                  onClick={() => dispatch({ type: 'DELETE_TODO', payload: todo.id })}
+                >
                   <DeleteIcon />
                 </button>
-                <button className={ConfigurationButton}
-                        onClick={() => dispatch({ type: 'TOGGLE_TODO', payload: todo.id })}>
-                  {todo.completed ? <InCompletedIcon /> : <CompletedIcon />}
+                <button
+                  className={ConfigurationButton}
+                  onClick={() => dispatch({ type: 'TOGGLE_TODO', payload: todo.id })}
+                >
+                  {todo.completed ? <CompletedIcon /> : <UnCheckedIcon />}
                 </button>
               </div>
             </div>

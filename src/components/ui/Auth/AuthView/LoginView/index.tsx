@@ -11,6 +11,7 @@ import {
   LoginInput,
   LoginButton,
   LoginSubHeading,
+  TitleWrapper,
 } from '@/components/ui/Auth/AuthView/LoginView/LoginView.css';
 
 
@@ -29,13 +30,15 @@ const LogInView: React.FC = () => {
 
 
       <form className={LoginForm} onSubmit={handleLogin}>
-        <h1 className={LoginTitle}>Login</h1>
-        <h3 className={LoginSubHeading}>Enter your credentials to Login.</h3>
+        <div className={TitleWrapper}>
+          <h1 className={LoginTitle}>Login</h1>
+          <h2 className={LoginSubHeading}>Enter your credentials to Login.</h2>
+        </div>
         <label className={LoginInputLabel}>Email</label>
         <input
           className={LoginInput}
           type="email"
-          placeholder="Email"
+          placeholder="Enter your Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -43,7 +46,7 @@ const LogInView: React.FC = () => {
         <input
           className={LoginInput}
           type="password"
-          placeholder="Password"
+          placeholder="Enter your Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

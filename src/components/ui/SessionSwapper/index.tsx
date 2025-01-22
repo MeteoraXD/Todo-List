@@ -1,42 +1,36 @@
-import React  from 'react';
+import React from 'react';
 
-import useTodos  from '@/context/TodoContext';
+
 import {
   SwapperWrapper,
-  SwapperLabel,
-  SwapperInput,
+  SwapperButton,
+  activeButton,
+} from './SessionSwapper.css';
 
-} from "@/components/ui/SessionSwapper/SessionSwapper.css"
+import { StorageType } from '@/data/DataModel/dataModel.ts';
+import useTodos from '@/hooks/TodoHook/useTodos.ts';
 
 const SessionSwapper: React.FC = () => {
-  const {  switchStorageType, storageType } = useTodos();
+  const { switchStorageType, storageType } = useTodos();
+
   return (
-      <div className={SwapperWrapper} >
-        <label className={SwapperLabel} >
-          <input
-            className={SwapperInput}
-            type="checkbox"
-            name="storage"
-            value="local"
-            checked={storageType === 'local'}
-            onChange={() => switchStorageType('local')}
-          />
-          Local Storage
-        </label>
+    <div className={SwapperWrapper}>
+      <button
+        className={`${SwapperButton} ${storageType === StorageType.LOCAL ? activeButton : ''}`}
+        onClick={() => switchStorageType(StorageType.LOCAL)}
+        type="button"
+      >
+        Permanent Storage
+      </button>
 
-        <label className={SwapperLabel}>
-          <input
-            className={SwapperInput}
-
-            type="checkbox"
-            name="storage"
-            value="session"
-            checked={storageType === 'session'}
-            onChange={() => switchStorageType('session')}
-          />
-          Session Storage
-        </label>
-      </div>
+      <button
+        className={`${SwapperButton} ${storageType === StorageType.SESSION ? activeButton : ''}`}
+        onClick={() => switchStorageType(StorageType.SESSION)}
+        type="button"
+      >
+        Temporary Storage
+      </button>
+    </div>
   );
 };
 

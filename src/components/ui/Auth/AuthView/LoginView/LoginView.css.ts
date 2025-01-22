@@ -1,12 +1,22 @@
 import { style } from '@vanilla-extract/css';
 
 import { vars } from '@/styles/theme.css.ts';
+import BackgroundImage
+  from '@/assets/xzczzxczxczczczczcz.jpg';
 
 const LoginWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'center',
+  backgroundImage: `url(${BackgroundImage})`,
+  backgroundSize: 'cover',
+  height: '100vh',
+});
+const TitleWrapper = style({
+  display: 'flex',
+ 
+  flexDirection: 'column',
 });
 
 const LoginTitle = style({
@@ -14,7 +24,6 @@ const LoginTitle = style({
   fontWeight: 'bold',
   lineHeight: '30px',
   color: vars.colors.base.black,
-  // marginBottom: '20px',
 });
 const LoginSubHeading = style({
   fontSize: '14px',
@@ -29,7 +38,8 @@ const LoginForm = style({
   maxWidth: '360px',
   padding: '4rem',
   borderRadius: '8px',
-  boxShadow: ' rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;',
+  boxShadow: ' rgba(8,8, 8, 0.7) 0px 4px 12px;',
+  backgroundColor: vars.colors.base.white,
 });
 
 const LoginInputLabel = style({
@@ -41,14 +51,16 @@ const LoginInputLabel = style({
 
 const LoginInput = style({
   fontSize: '16px',
-  padding: '10px 1px',
+  padding: '10px ',
   marginBottom: '20px',
   color: vars.colors.base.black,
   outline: 'none',
   border: 'none',
   borderBottom: '1px solid black',
   transition: 'border-color 0.3s',
-
+  ':focus': {
+    borderBottom: ` 2px solid ${vars.colors.primary.accent}`,
+  },
 
 });
 
@@ -78,4 +90,14 @@ const ErrorMessage = style({
   textAlign: 'center',
 });
 
-export { LoginWrapper, ErrorMessage, LoginSubHeading, LoginInputLabel, LoginTitle, LoginForm, LoginInput, LoginButton };
+export {
+  LoginWrapper,
+  ErrorMessage,
+  LoginSubHeading,
+  LoginInputLabel,
+  LoginTitle,
+  LoginForm,
+  LoginInput,
+  LoginButton,
+  TitleWrapper,
+};

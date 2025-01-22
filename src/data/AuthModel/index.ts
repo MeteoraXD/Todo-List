@@ -4,6 +4,7 @@ export enum AuthMode {
 }
 
 export interface User {
+  id: string;
   email: string;
   password: string;
 }
@@ -20,6 +21,7 @@ export interface FormData {
   email: string;
   password: string;
   confirmPassword?: string;
+
 }
 
 export enum AuthActionType {

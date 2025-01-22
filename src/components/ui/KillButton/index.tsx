@@ -1,5 +1,6 @@
-import useTodos from '@/context/TodoContext';
-import { killButtonCss } from '@/components/ui/KillButton/KillButton.css.ts';
+import { killButtonCss, KillButtonWrapper } from '@/components/ui/KillButton/KillButton.css.ts';
+import ResetIcon from '@/components/icons/ResetIcon';
+import useTodos from '@/hooks/TodoHook/useTodos.ts';
 
 const KillButton = () => {
 
@@ -20,7 +21,11 @@ const KillButton = () => {
   };
 
 
-  return (<button onClick={killSessionHandler} className={killButtonCss}>Reset Session</button>);
+  return (
+    <div className={KillButtonWrapper}>
+      <button onClick={killSessionHandler} className={killButtonCss}><ResetIcon /><span>Reset Session</span></button>
+    </div>);
+
 };
 
 export default KillButton;

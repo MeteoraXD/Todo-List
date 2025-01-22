@@ -9,15 +9,30 @@ const SwapperWrapper = style({
   justifyContent: 'center',
   gap: '2rem',
 });
-const SwapperLabel = style({
-  color: vars.colors.greySea.dark
-  ,
 
+const SwapperButton = style({
+  padding: '0.75rem 1.5rem',
+  borderRadius: '0.5rem',
+  border: 'none',
+  color: vars.colors.greySea.dark,
+  cursor: 'pointer',
+  transition: 'all 0.2s ease-in-out',
+  fontSize: '1rem',
+  fontWeight: '500',
+
+  ':hover': {
+    background: vars.colors.primary.accent,
+    color: vars.colors.base.white,
+  },
 });
-const SwapperInput = style({});
+
+const activeButton = style({
+  background: vars.colors.primary.accent,
+  color: vars.colors.base.white,
+});
 
 export {
   SwapperWrapper,
-  SwapperLabel,
-  SwapperInput,
+  SwapperButton,
+  activeButton,
 };

@@ -7,5 +7,5 @@ export const Route = createFileRoute('/todoview')({
 });
 
 function RouteComponent() {
-  return <div><TodoView /></div>;
+  return <TodoView />;
 }
