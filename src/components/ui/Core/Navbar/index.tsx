@@ -20,7 +20,10 @@ const TodoNavbar: React.FunctionComponent = () => {
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
 
   const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setIsDropdownOpen(false);
     }
   };
@@ -71,24 +74,27 @@ const TodoNavbar: React.FunctionComponent = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isDropdownOpen]);
 
+  const handlePopoverClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
     <header className={NavBarHeader}>
       <nav className={NavBarWrapper}>
-        <h1>Hello, {username || 'Hello User'}</h1>
+        <h1>Hello, {username}</h1>
         <h2 className={NavBarTime}>{todayDate()}</h2>
 
         <div ref={dropdownRef} className={DropDownButton} onClick={toggleDropdown}>
           <PlaceholderIcon />
 
           {isDropdownOpen && (
-            <div>
+            <div onClick={handlePopoverClick}>
               <ul className={DropDownList}>
                 <li className={DropDownItems}>
                   <LogoutPopOver />
                 </li>
                 <li className={DropDownItems}>
                   <ResetPopOver />
-
                 </li>
               </ul>
             </div>

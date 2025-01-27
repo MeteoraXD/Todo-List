@@ -2,6 +2,14 @@ import { style } from '@vanilla-extract/css';
 
 import { vars } from '@/styles/theme.css.ts';
 
+const TrrigerButton = style({
+  border: 'none',
+  background: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  cursor: 'pointer',
+});
+
 const PopOverWrapper = style({
   position: 'fixed',
   top: '50%',
@@ -61,10 +69,20 @@ const PopOverCancelButton = style({
   },
 });
 
+const PopOverButtonWrapper = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  gap: '2rem',
+});
+
 export {
   PopOverWrapper,
   PopOverTitle,
   PopOverContent,
   PopOverDangerButton,
   PopOverCancelButton,
+  TrrigerButton,
+  PopOverButtonWrapper,
 };

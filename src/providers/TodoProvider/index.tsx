@@ -7,7 +7,7 @@ import { StorageType } from '@/data/TodoModel/TodoModel.ts';
 import { AUTH_USER_KEY } from '@/hooks/LoginHook';
 
 const TodoProvider: React.FunctionComponent<PropsWithChildren> = ({ children }) => {
-  const [session, setSession] = useState<StorageType>(StorageType.LOCAL);
+  const [session] = useState<StorageType>(StorageType.LOCAL);
   const [storageType, setStorageType] = useState<StorageType>(StorageType.LOCAL);
   const [todos, dispatch] = useReducer(todoReducer, getTodos(storageType));
 
@@ -21,11 +21,6 @@ const TodoProvider: React.FunctionComponent<PropsWithChildren> = ({ children }) 
     dispatch({ type: 'SET_TODOS', payload: userTodos });
   };
 
-  const switchSession = (newSession: StorageType) => {
-    setSession(newSession);
-    const sessionTodos = getTodos(newSession);
-    dispatch({ type: 'SET_TODOS', payload: sessionTodos });
-  };
 
   const switchStorageType = (newStorageType: StorageType) => {
     setStorageType(newStorageType);
@@ -35,7 +30,7 @@ const TodoProvider: React.FunctionComponent<PropsWithChildren> = ({ children }) 
 
   return (
     <TodoContext.Provider
-      value={{ todos, dispatch, session, switchSession, switchUser, storageType, switchStorageType }}>
+      value={{ todos, dispatch, session, switchUser, storageType, switchStorageType }}>
       {children}
     </TodoContext.Provider>
   );

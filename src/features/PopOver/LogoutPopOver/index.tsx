@@ -1,25 +1,50 @@
 import { useNavigate } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 import {
   PopOverWrapper,
   PopOverTitle,
   PopOverContent,
   PopOverDangerButton,
-  PopOverCancelButton,
+  PopOverCancelButton, TrrigerButton, PopOverButtonWrapper,
 } from '@/features/PopOver/LogoutPopOver/PopOver.css.ts';
 import { AUTH_USER_KEY } from '@/hooks/LoginHook';
-
+import LogoutIcon from '@/components/icons/LogoutIcon';
 
 const LogoutPopOver = () => {
-  const [isVisible, setIsVisible] = useState<boolean>(true);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const popoverRef = useRef<HTMLDivElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement | null>(null);
+
+  const navigate = useNavigate();
   const authUser = localStorage.getItem(AUTH_USER_KEY);
 
   const toggleVisibility = (e: React.MouseEvent) => {
     e.stopPropagation();
-    setIsVisible(!isVisible);
+    setIsVisible((prev) => !prev);
   };
-  const navigate = useNavigate();
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      popoverRef.current &&
+      !popoverRef.current.contains(event.target as Node) &&
+      !triggerRef.current?.contains(event.target as Node)
+    ) {
+      setIsVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isVisible) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isVisible]);
+
   const handleLogout = () => {
     localStorage.removeItem(AUTH_USER_KEY);
     sessionStorage.removeItem(`todos_${authUser}`);
@@ -28,17 +53,30 @@ const LogoutPopOver = () => {
 
   return (
     <>
-      <button onClick={toggleVisibility}>
-        Click Me
+      <button ref={triggerRef} onClick={toggleVisibility} className={TrrigerButton}>
+        <LogoutIcon /> Logout
       </button>
       {isVisible && (
-        <div className={PopOverWrapper}>
-          <h2 className={PopOverTitle}>Are You Sure You Want to Logout ?</h2>
+        <div ref={popoverRef} className={PopOverWrapper}>
+          <h2 className={PopOverTitle}>Are You Sure You Want to Logout?</h2>
           <hr />
-          <p className={PopOverContent}>You will be logged out. Are you sure you want to continue?</p>
-          <button className={PopOverCancelButton}>Close</button>
-          
-          <button className={PopOverDangerButton} onClick={handleLogout}>Logout</button>
+          <p className={PopOverContent}>
+            You will be logged out. Are you sure you want to continue?
+          </p>
+          <div className={PopOverButtonWrapper}>
+            <button
+              className={PopOverCancelButton}
+              onClick={() => setIsVisible(false)}
+            >
+              Close
+            </button>
+            <button
+              className={PopOverDangerButton}
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          </div>
         </div>
       )}
     </>

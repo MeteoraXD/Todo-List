@@ -22,7 +22,7 @@ export interface TodoContextType {
   todos: Todo[];
   session: StorageType;
   dispatch: React.Dispatch<TodoAction>;
-  currentUser: string;
+  // currentUser: string;
   storageType: StorageType.LOCAL | StorageType.SESSION;
   switchUser: (newUserId: string) => void;
   switchStorageType: (newStorageType: StorageType.LOCAL | StorageType.SESSION) => void;

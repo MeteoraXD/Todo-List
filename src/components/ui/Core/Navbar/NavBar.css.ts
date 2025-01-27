@@ -32,16 +32,13 @@ const DropDownButton = style({
   cursor: 'pointer',
 });
 
-const TaskStatusNavigator = style({
-  color: vars.colors.base.white,
-
-});
 
 const DropDownList = style({
   transition: 'all 0.3s ease-in-out',
   height: 'fit-content',
   width: '10rem',
   position: 'absolute',
+  padding: '0  ',
   right: '1rem',
   top: '3rem',
   borderRadius: '10px',
@@ -53,10 +50,23 @@ const DropDownList = style({
 
 });
 const DropDownItems = style({
-  padding: '8px ',
-  cursor: 'pointer',
-  width: '100%',
+  padding: '1rem 1rem',
+  color: vars.colors.base.white,
+  borderBottom: `1px solid ${vars.colors.greySea.light}`,
+
+  display: 'flex',
+  gap: '.5rem',
+  alignItems: 'center',
+  overflowX: 'hidden',
+
+
+  ':hover': {
+    color: vars.colors.base.white,
+    background: vars.colors.greySea.light,
+    paddingLeft: '1rem',
+    borderLeft: `4px solid ${vars.colors.primary.accent}`,
+  },
 
 });
 
-export { NavBarWrapper, TaskStatusNavigator, DropDownButton, DropDownList, DropDownItems, NavBarHeader, NavBarTime };
+export { NavBarWrapper, DropDownButton, DropDownList, DropDownItems, NavBarHeader, NavBarTime };
