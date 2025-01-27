@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { TodoContextType } from '@/data/DataModel/dataModel.ts';
+import { TodoContextType } from '@/data/TodoModel/TodoModel.ts';
 import TodoContext from '@/context/TodoContext';
 
 const useTodos = (): TodoContextType => {

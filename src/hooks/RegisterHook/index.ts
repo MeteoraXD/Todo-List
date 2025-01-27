@@ -1,82 +1,57 @@
-import { useState } from 'react';
-import { toast } from 'react-toastify';
 import { useNavigate } from '@tanstack/react-router';
+import { toast } from 'react-toastify';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
 
-interface FormData {
-  email: string;
-  password: string;
-}
+import { User } from '@/data/AuthModel';
+import { RegisterFormData, RegistrationSchema } from '@/data/Schema/RegistrationSchema/RegisterSchema.ts';
 
-interface User extends FormData {
-}
+
+const AUTH_KEY = 'auth_users';
 
 const useRegister = () => {
-  const [formData, setFormData] = useState<FormData>({ email: '', password: '' });
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [isRegistered, setIsRegistered] = useState<boolean>(false);
   const navigate = useNavigate();
 
-  const AUTH_KEY = 'auth_users';
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-  };
-
-  const validateForm = (): boolean => {
-    if (!formData.email || !formData.password) {
-      setErrorMessage('All fields are required.');
-      return false;
-    }
-
-    if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      setErrorMessage('Please enter a valid email address.');
-      return false;
-    }
-
-    setErrorMessage(null);
-    return true;
-  };
-
-  const encodePassword = (password: string): string => btoa(password);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<RegisterFormData>({
+    resolver: zodResolver(RegistrationSchema),
+  });
 
   const isEmailTaken = (email: string, users: User[]): boolean => {
     return users.some((user) => user.email === email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
+  const handleRegistration = (data: RegisterFormData) => {
     const existingUsers: User[] = JSON.parse(localStorage.getItem(AUTH_KEY) || '[]');
 
-    if (isEmailTaken(formData.email, existingUsers)) {
+    if (isEmailTaken(data.username, existingUsers)) {
       toast.error('Email is already in use.');
+
       return;
     }
 
-    const newUser: User = {
-      email: formData.email,
-      password: encodePassword(formData.password),
+    const newUser: { name: string, email: string; password: string } = {
+      name: data.name,
+      email: data.username,
+      password: btoa(data.password),
     };
 
     const updatedUsers = [...existingUsers, newUser];
     localStorage.setItem(AUTH_KEY, JSON.stringify(updatedUsers));
 
-    setIsRegistered(true);
+    reset();
+    toast.success('Registration completed successfully.');
     navigate({ to: '/' });
-    setFormData({ email: '', password: '' });
-    toast.success('Registration Completed successfully.');
-
   };
 
   return {
-    formData,
-    errorMessage,
-    isRegistered,
-    handleInputChange,
-    handleSubmit,
+    register,
+    handleSubmit: handleSubmit(handleRegistration),
+    errors,
   };
 };
 

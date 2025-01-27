@@ -3,25 +3,33 @@ export enum AuthMode {
   REGISTER = 'register'
 }
 
+
 export interface User {
   id: string;
+  name: string;
+  username: string;
   email: string;
   password: string;
 }
 
 export interface AuthState {
   isLoggedIn: boolean;
-  currentUser: string | null;
+  currentUser: User | null;
   error: string | null;
   message: string | null;
   isLoading: boolean;
 }
 
-export interface FormData {
+export interface StoredUser {
   email: string;
   password: string;
-  confirmPassword?: string;
+  userId: string;
+}
 
+
+export interface CurrentUser {
+  username: string;
+  id: string;
 }
 
 export enum AuthActionType {
@@ -34,12 +42,13 @@ export enum AuthActionType {
 }
 
 export type AuthAction =
-  | { type: AuthActionType.LOGIN_SUCCESS; payload: string }
+  | { type: AuthActionType.LOGIN_SUCCESS; payload: { user: User } }
   | { type: AuthActionType.LOGIN_ERROR; payload: string }
-  | { type: AuthActionType.REGISTER_SUCCESS; payload: string }
+  | { type: AuthActionType.REGISTER_SUCCESS; payload: { user: User } }
   | { type: AuthActionType.REGISTER_ERROR; payload: string }
   | { type: AuthActionType.LOGOUT }
   | { type: AuthActionType.SET_LOADING; payload: boolean }
+
 
 export interface AuthContextType {
   state: AuthState;

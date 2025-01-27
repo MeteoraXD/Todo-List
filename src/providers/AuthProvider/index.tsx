@@ -1,13 +1,14 @@
 import React, { createContext, useReducer } from 'react';
 
-
-import { AuthAction, AuthState } from '@/data/AuthModel';
+import { AuthState, AuthAction } from '@/data/AuthModel';
 import { initialState, authReducer } from '@/providers/reducer/AuthReducer/AuthReducer.ts';
 
-const AuthContext = createContext<{
+interface AuthContextType {
   state: AuthState;
   dispatch: React.Dispatch<AuthAction>;
-} | null>(null);
+}
+
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -18,3 +19,5 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     </AuthContext.Provider>
   );
 };
+
+export default AuthContext;

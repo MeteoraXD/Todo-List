@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
 
-import TodoView from '@/components/ui/TodoView';
+import TodoView from '@/features/Todo/TodoView';
 
 export const Route = createFileRoute('/todoview')({
   component: RouteComponent,

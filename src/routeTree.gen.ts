@@ -14,6 +14,8 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as TodoviewImport } from './routes/todoview'
 import { Route as RegistrationImport } from './routes/registration'
 import { Route as LoginImport } from './routes/login'
+import { Route as IncompletetaskImport } from './routes/incompletetask'
+import { Route as CompletedtaskImport } from './routes/completedtask'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
@@ -36,6 +38,18 @@ const LoginRoute = LoginImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const IncompletetaskRoute = IncompletetaskImport.update({
+  id: '/incompletetask',
+  path: '/incompletetask',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CompletedtaskRoute = CompletedtaskImport.update({
+  id: '/completedtask',
+  path: '/completedtask',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
@@ -51,6 +65,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/completedtask': {
+      id: '/completedtask'
+      path: '/completedtask'
+      fullPath: '/completedtask'
+      preLoaderRoute: typeof CompletedtaskImport
+      parentRoute: typeof rootRoute
+    }
+    '/incompletetask': {
+      id: '/incompletetask'
+      path: '/incompletetask'
+      fullPath: '/incompletetask'
+      preLoaderRoute: typeof IncompletetaskImport
       parentRoute: typeof rootRoute
     }
     '/login': {
@@ -81,6 +109,8 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/completedtask': typeof CompletedtaskRoute
+  '/incompletetask': typeof IncompletetaskRoute
   '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/todoview': typeof TodoviewRoute
@@ -88,6 +118,8 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/completedtask': typeof CompletedtaskRoute
+  '/incompletetask': typeof IncompletetaskRoute
   '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/todoview': typeof TodoviewRoute
@@ -96,6 +128,8 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/completedtask': typeof CompletedtaskRoute
+  '/incompletetask': typeof IncompletetaskRoute
   '/login': typeof LoginRoute
   '/registration': typeof RegistrationRoute
   '/todoview': typeof TodoviewRoute
@@ -103,15 +137,36 @@ export interface FileRoutesById {
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/registration' | '/todoview'
+  fullPaths:
+    | '/'
+    | '/completedtask'
+    | '/incompletetask'
+    | '/login'
+    | '/registration'
+    | '/todoview'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/login' | '/registration' | '/todoview'
-  id: '__root__' | '/' | '/login' | '/registration' | '/todoview'
+  to:
+    | '/'
+    | '/completedtask'
+    | '/incompletetask'
+    | '/login'
+    | '/registration'
+    | '/todoview'
+  id:
+    | '__root__'
+    | '/'
+    | '/completedtask'
+    | '/incompletetask'
+    | '/login'
+    | '/registration'
+    | '/todoview'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CompletedtaskRoute: typeof CompletedtaskRoute
+  IncompletetaskRoute: typeof IncompletetaskRoute
   LoginRoute: typeof LoginRoute
   RegistrationRoute: typeof RegistrationRoute
   TodoviewRoute: typeof TodoviewRoute
@@ -119,6 +174,8 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CompletedtaskRoute: CompletedtaskRoute,
+  IncompletetaskRoute: IncompletetaskRoute,
   LoginRoute: LoginRoute,
   RegistrationRoute: RegistrationRoute,
   TodoviewRoute: TodoviewRoute,
@@ -135,6 +192,8 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/completedtask",
+        "/incompletetask",
         "/login",
         "/registration",
         "/todoview"
@@ -142,6 +201,12 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/completedtask": {
+      "filePath": "completedtask.tsx"
+    },
+    "/incompletetask": {
+      "filePath": "incompletetask.tsx"
     },
     "/login": {
       "filePath": "login.tsx"

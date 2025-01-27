@@ -1,62 +1,73 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from '@tanstack/react-router';
 import { toast } from 'react-toastify';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+
+import { LoginFormData, LoginSchema } from '@/data/Schema/LoginSchema/LoginSchema.ts';
 
 const AUTH_KEY = 'auth_users';
-const AUTH_USER_KEY = 'authUser';
+export const AUTH_USER_KEY = 'authUser';
 
 const useLogin = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormData>({
+    resolver: zodResolver(LoginSchema),
+  });
 
   useEffect(() => {
     const storedUser = localStorage.getItem(AUTH_USER_KEY);
     if (storedUser) {
-      setIsAuthenticated(true);
-      // toast.success('We have sent you a new code.');
       navigate({ to: '/todoview' });
     }
   }, [navigate]);
 
-  const validateUser = (email: string, password: string) => {
-    const users = JSON.parse(localStorage.getItem(AUTH_KEY) || '[]');
+  const validateUser = (
+    email: string,
+    password: string,
+  ): { name: string; email: string } | null => {
+    const users: {
+      name: string;
+      email: string;
+      password: string;
+    }[] = JSON.parse(localStorage.getItem(AUTH_KEY) || '[]');
 
-    return users.find((user: { email: string; password: string }) => {
-      return user.email === email && atob(user.password) === password; // This is for demonstration only. Replace with a secure method.
-    });
+    const matchedUser = users.find(
+      (user) => user.email === email && atob(user.password) === password,
+    );
+
+    return matchedUser || null;
   };
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
+  const onSubmit: SubmitHandler<LoginFormData> = ({ username: email, password }) => {
+    const user = validateUser(email, password);
 
-    const matchedUser = validateUser(email, password);
+    if (user) {
+      localStorage.setItem(
+        AUTH_USER_KEY,
+        JSON.stringify({
+          name: user.name,
+          email: user.email,
+        }),
+      );
 
-    if (matchedUser) {
-      setErrorMessage(null);
-      setIsAuthenticated(true);
-
-      localStorage.setItem(AUTH_USER_KEY, JSON.stringify({ email }));
-
-      navigate({ to: '/todoview' });
       toast.success('Successfully logged in');
+      navigate({ to: '/todoview' });
     } else {
-      toast.error(
-        'Invalid email or password');
-      setIsAuthenticated(false);
+      toast.error('Invalid email or password');
     }
   };
 
   return {
-    email,
-    setEmail,
-    password,
-    setPassword,
-    errorMessage,
-    isAuthenticated,
-    handleLogin,
+    register,
+    handleSubmit,
+    onSubmit,
+    errors,
   };
 };
 

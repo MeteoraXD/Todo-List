@@ -1,29 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-import Logout from '@/components/ui/Core/LogOut/Logout.tsx';
-import KillButton from '@/components/ui/KillButton';
-import TodoProvider from '@/providers/TodoProvider';
 import {
   DropDownButton,
   DropDownList,
   DropDownItems,
   NavBarWrapper,
-  NavBarHeader, NavBarTime,
+  NavBarHeader,
+  NavBarTime,
 } from '@/components/ui/Core/Navbar/NavBar.css.ts';
 import PlaceholderIcon from '@/components/icons/PlaceholderIcon';
+import ResetPopOver from '@/features/PopOver/ResetPopOver';
+import LogoutPopOver from '@/features/PopOver/LogoutPopOver';
 
 const TodoNavbar: React.FunctionComponent = () => {
-
-
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [username, setUsername] = useState<string | null>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+  const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setIsDropdownOpen(false);
+    }
+  };
 
   const todayDate = () => {
     const today = new Date();
     const dayOfWeek = today.toLocaleString('default', { weekday: 'short' });
     const day = today.getDate();
-    const month = today.toLocaleString('default', { month: 'short' }); // Get short month name (e.g., 'Jan')
+    const month = today.toLocaleString('default', { month: 'short' });
     const year = today.getFullYear();
 
     const getOrdinalSuffix = (n: number) => {
@@ -43,28 +49,50 @@ const TodoNavbar: React.FunctionComponent = () => {
     return ` ${dayOfWeek}, ${day}${getOrdinalSuffix(day)} ${month} ${year}`;
   };
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('authUser');
+    if (storedUser) {
+      try {
+        const user = JSON.parse(storedUser);
+        setUsername(user.name);
+      } catch (error) {
+        console.error('Error parsing authUser from localStorage:', error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isDropdownOpen]);
+
   return (
     <header className={NavBarHeader}>
       <nav className={NavBarWrapper}>
-        <h1>Hello User</h1>
+        <h1>Hello, {username || 'Hello User'}</h1>
         <h2 className={NavBarTime}>{todayDate()}</h2>
-        <div className={DropDownButton} onClick={toggleDropdown}>
+
+        <div ref={dropdownRef} className={DropDownButton} onClick={toggleDropdown}>
           <PlaceholderIcon />
+
           {isDropdownOpen && (
-            <ul className={DropDownList}>
-              <li className={DropDownItems}>
-                <Logout />
+            <div>
+              <ul className={DropDownList}>
+                <li className={DropDownItems}>
+                  <LogoutPopOver />
+                </li>
+                <li className={DropDownItems}>
+                  <ResetPopOver />
 
-              </li>
-              <li className={DropDownItems}>
-                <TodoProvider>
-                  <KillButton />
-                </TodoProvider>
-              </li>
-            </ul>
+                </li>
+              </ul>
+            </div>
           )}
-
-
         </div>
       </nav>
     </header>

@@ -1,12 +1,20 @@
-import { User } from '@/data/AuthModel';
+import { CurrentUser, StoredUser } from '@/data/AuthModel';
 
-const getAuth = (key: string): User[] => {
-  const users = localStorage.getItem(key);
+export const getUsers = (): StoredUser[] => {
+  const users = localStorage.getItem('users');
   return users ? JSON.parse(users) : [];
 };
 
-const saveAuth = (key: string, users: User[]): void => {
-  localStorage.setItem(key, JSON.stringify(users));
+export const saveUsers = (users: StoredUser[]): void => {
+  localStorage.setItem('users', JSON.stringify(users));
 };
 
-export { getAuth, saveAuth };
+export const getCurrentUser = (): CurrentUser | null => {
+  const user = localStorage.getItem('currentUser');
+  const parsed = user ? JSON.parse(user) : null;
+  return parsed?.user || parsed;
+};
+
+export const saveCurrentUser = (user: CurrentUser): void => {
+  localStorage.setItem('currentUser', JSON.stringify(user));
+};
