@@ -59,7 +59,7 @@ const CompletedTasks: React.FunctionComponent = () => {
   return (
     <div>
       <TodoNavbar />
-      <TodoSidebar />/
+      <TodoSidebar sidebarItems={[]} />
       <h1 className={TodoTitle}> Completed Tasks</h1>
       <SessionSwapper />
 

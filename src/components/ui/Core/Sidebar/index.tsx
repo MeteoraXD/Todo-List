@@ -20,25 +20,25 @@ const TodoSidebar: React.FunctionComponent<SidebarItemsProps> = () => {
   const [isCollapsed, setCollapsed] = useState<boolean>(false);
 
   const ToggleSidebar = () => {
-    setCollapsed((prevState) => !prevState);
+    setCollapsed(!isCollapsed);
   };
 
   return (
     <aside className={isCollapsed ? SidebarVariants.collapsed : SidebarVariants.expanded}>
+      <button className={ToggleButton} onClick={ToggleSidebar}> {isCollapsed ? <ToggleOffButtonIcon /> :
+        <ToggleOnButtonIcon />} </button>
       <ul className={SidebarItemWrapper}>
-        {SidebarItems.map((sidebarItem, index) => (
-          <li key={index} className={StyleSidebarItems}>
-            <Link to={sidebarItem.route} className={isCollapsed ? LinkedStyled.collapsed : LinkedStyled.expanded}>
-              {sidebarItem.icon}
+        {SidebarItems.map((sidebarItems) => (
+          <li className={StyleSidebarItems}>
+            <Link to={sidebarItems.route} className={isCollapsed ? LinkedStyled.collapsed : LinkedStyled.expanded}>
+              {sidebarItems.icon}
               <span className={isCollapsed ? LinkTitle.collapsed : LinkTitle.expanded}>
-              {sidebarItem.title}
+              {sidebarItems.title}
                 </span>
             </Link>
           </li>
         ))}
       </ul>
-      <button onClick={ToggleSidebar} className={ToggleButton}>{isCollapsed ? <ToggleOffButtonIcon /> :
-        <ToggleOnButtonIcon />}</button>
 
     </aside>
   );

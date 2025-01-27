@@ -16,7 +16,7 @@ const TodoView: React.FunctionComponent = () => {
 
     <div>
       <TodoNavbar />
-      <TodoSidebar />
+      <TodoSidebar sidebarItems={[]} />
       <div className={TodoViewWrapper}>
         <TodoProvider>
 
