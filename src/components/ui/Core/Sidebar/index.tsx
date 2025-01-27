@@ -1,22 +1,47 @@
 import { Link } from '@tanstack/react-router';
+import React, { useState } from 'react';
 
 import {
-  SidebarWrapper, SidebarItems,
+  LinkedStyled,
+  LinkTitle,
+  SidebarItemWrapper,
+  SidebarVariants,
+  StyleSidebarItems, ToggleButton,
 } from '@/components/ui/Core/Sidebar/Sidebar.css.ts';
-import TaskListIcon from '@/components/icons/TaskListIcon';
-import TaskCompletedIcon from '@/components/icons/TaskCompleted';
-import TaskIncompletedIcon from '@/components/icons/TaskIncompleted ';
+import SidebarItems, { SidebarProps } from '@/data/SidebarData';
+import ToggleOffButtonIcon from '@/components/icons/ToggleOffButton';
+import ToggleOnButtonIcon from '@/components/icons/ToggleOnButtonIcon';
 
-const TodoSidebar = () => {
+type SidebarItemsProps = {
+  sidebarItems: SidebarProps[];
+};
+
+const TodoSidebar: React.FunctionComponent<SidebarItemsProps> = () => {
+  const [isCollapsed, setCollapsed] = useState<boolean>(false);
+
+  const ToggleSidebar = () => {
+    setCollapsed((prevState) => !prevState);
+  };
 
   return (
-    <aside className={SidebarWrapper}>
+    <aside className={isCollapsed ? SidebarVariants.collapsed : SidebarVariants.expanded}>
+      <ul className={SidebarItemWrapper}>
+        {SidebarItems.map((sidebarItem, index) => (
+          <li key={index} className={StyleSidebarItems}>
+            <Link to={sidebarItem.route} className={isCollapsed ? LinkedStyled.collapsed : LinkedStyled.expanded}>
+              {sidebarItem.icon}
+              <span className={isCollapsed ? LinkTitle.collapsed : LinkTitle.expanded}>
+              {sidebarItem.title}
+                </span>
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <button onClick={ToggleSidebar} className={ToggleButton}>{isCollapsed ? <ToggleOffButtonIcon /> :
+        <ToggleOnButtonIcon />}</button>
 
-      <Link className={SidebarItems} to={'/todoview'}> <TaskListIcon /> <span>All Tasks</span></Link>
-      <Link className={SidebarItems} to={'/completedtask'}><TaskCompletedIcon /> <span>Completed Tasks</span></Link>
-      <Link className={SidebarItems} to={'/incompletetask'}><TaskIncompletedIcon /> <span>Pending Tasks</span></Link>
     </aside>
   );
-
 };
+
 export default TodoSidebar;

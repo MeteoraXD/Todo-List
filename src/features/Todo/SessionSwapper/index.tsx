@@ -10,7 +10,8 @@ import {
 import { StorageType } from '@/data/TodoModel/TodoModel.ts';
 import useTodos from '@/hooks/TodoHook/useTodos.ts';
 
-const SessionSwapper: React.FC = () => {
+const SessionSwapper: React.FunctionComponent
+  = () => {
   const { switchStorageType, storageType } = useTodos();
 
   return (

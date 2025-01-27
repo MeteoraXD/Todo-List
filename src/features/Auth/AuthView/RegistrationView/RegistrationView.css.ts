@@ -12,7 +12,13 @@ const RegistrationWrapper = style({
   backgroundImage: `url(${BackgroundImage})`,
   backgroundSize: 'cover',
   height: '100vh',
+  padding: '0 16px',
+  overflow: 'hidden',
 
+  [mediaQuery('small')]: {
+    padding: '0 12px',
+
+  },
 });
 
 const RegistrationTitle = style({
@@ -20,6 +26,11 @@ const RegistrationTitle = style({
   fontWeight: 'bold',
   lineHeight: '30px',
   color: vars.colors.base.black,
+
+  [mediaQuery('small')]: {
+    fontSize: '20px',
+    lineHeight: '26px',
+  },
 });
 
 const RegistrationLabel = style({
@@ -27,16 +38,29 @@ const RegistrationLabel = style({
   fontSize: '14px',
   fontWeight: '600',
   marginBottom: '8px',
+
+  [mediaQuery('small')]: {
+    fontSize: '12px',
+  },
 });
 
 const RegistrationSubHeading = style({
   fontSize: '14px',
   color: vars.colors.greySea.dark,
+
+  [mediaQuery('small')]: {
+    fontSize: '12px',
+  },
 });
+
 const RegisterLabelInputWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   marginTop: '20px',
+
+  [mediaQuery('small')]: {
+    marginTop: '16px',
+  },
 });
 
 const RegistrationForm = style({
@@ -47,14 +71,22 @@ const RegistrationForm = style({
   maxWidth: '360px',
   padding: '4rem',
   borderRadius: '8px',
-  boxShadow: ' rgba(8,8, 8, 0.7) 0px 4px 12px;',
+  boxShadow: 'rgba(8,8, 8, 0.7) 0px 4px 12px;',
   backgroundColor: vars.colors.base.white,
 
-
-  [mediaQuery('small')]: {
+  [mediaQuery('medium')]: {
+    padding: '4rem 5rem',
     maxWidth: '320px',
+    maxHeight: '100%',
+    overflow: 'hidden',
+
+
   },
 
+  [mediaQuery('small')]: {
+    padding: '2rem 3rem',
+
+  },
 });
 
 const RegistrationInput = style({
@@ -72,7 +104,12 @@ const RegistrationInput = style({
     borderBottom: `2px solid ${vars.colors.primary.accent}`,
   },
 
+  [mediaQuery('small')]: {
+    fontSize: '14px',
+    padding: '8px 16px',
+  },
 });
+
 const RegistrationSubmitButton = style({
   border: 'none',
   color: vars.colors.base.white,
@@ -84,9 +121,13 @@ const RegistrationSubmitButton = style({
   transition: 'background-color 0.3s, transform 0.2s',
   margin: '20px 0',
 
-
   ':hover': {
     transform: 'scale(1.05)',
+  },
+
+  [mediaQuery('small')]: {
+    padding: '10px 20px',
+    fontSize: '14px',
   },
 });
 
@@ -95,7 +136,12 @@ const ErrorResponseMessage = style({
   marginBottom: '20px',
   color: vars.colors.error.dark,
 
+  [mediaQuery('small')]: {
+    fontSize: '12px',
+    marginBottom: '16px',
+  },
 });
+
 const PasswordToggleWrapper = style({
   position: 'relative',
 });
@@ -109,7 +155,6 @@ const ToggleButton = style({
   border: 'none',
   cursor: 'pointer',
 });
-
 
 export {
   RegistrationWrapper,

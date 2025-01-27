@@ -7,14 +7,11 @@ import TodoList from '../TodoList';
 import TodoProvider from '@/providers/TodoProvider';
 import { TodoTitle, TodoViewWrapper } from '@/features/Todo/TodoView/TodoView.css.ts';
 import TodoNavbar from '@/components/ui/Core/Navbar';
-import { getCurrentUser } from '@/utils/Storage/AuthStorage';
-import { CurrentUser } from '@/data/AuthModel';
 import TodoSidebar from '@/components/ui/Core/Sidebar';
 
-const TodoView: React.FC = () => {
+const TodoView: React.FunctionComponent = () => {
 
-  const user: CurrentUser | null = getCurrentUser();
-  console.log(user);
+
   return (
 
     <div>

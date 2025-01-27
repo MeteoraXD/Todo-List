@@ -8,6 +8,7 @@ const NavBarHeader = style({
   top: '0px',
   height: '70px',
   position: 'sticky',
+  marginBottom: '3px',
 });
 
 const NavBarWrapper = style({

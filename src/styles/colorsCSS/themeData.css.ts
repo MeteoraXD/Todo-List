@@ -1,5 +1,5 @@
-import colorData from '@/styles/colorsCSS/colors.css.ts';
+import { darkTheme } from '@/styles/colorsCSS/colors.css.ts';
 
-const themeData = `${colorData}`
+const themeData = `${darkTheme}-lightTheme`;
 
 export default themeData;

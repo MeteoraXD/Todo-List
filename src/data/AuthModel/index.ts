@@ -33,21 +33,19 @@ export interface CurrentUser {
 }
 
 export enum AuthActionType {
-  LOGIN_SUCCESS = 'LOGIN_SUCCESS',
+  LOGIN = 'LOGIN',
   LOGIN_ERROR = 'LOGIN_ERROR',
   REGISTER_SUCCESS = 'REGISTER_SUCCESS',
   REGISTER_ERROR = 'REGISTER_ERROR',
   LOGOUT = 'LOGOUT',
-  SET_LOADING = 'SET_LOADING',
 }
 
 export type AuthAction =
-  | { type: AuthActionType.LOGIN_SUCCESS; payload: { user: User } }
+  | { type: AuthActionType.LOGIN; payload: { user: User } }
   | { type: AuthActionType.LOGIN_ERROR; payload: string }
   | { type: AuthActionType.REGISTER_SUCCESS; payload: { user: User } }
   | { type: AuthActionType.REGISTER_ERROR; payload: string }
   | { type: AuthActionType.LOGOUT }
-  | { type: AuthActionType.SET_LOADING; payload: boolean }
 
 
 export interface AuthContextType {

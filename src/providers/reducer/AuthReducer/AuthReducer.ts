@@ -10,7 +10,7 @@ export const initialState: AuthState = {
 
 const authReducer = (state: AuthState, action: AuthAction): AuthState => {
   switch (action.type) {
-    case AuthActionType.LOGIN_SUCCESS:
+    case AuthActionType.LOGIN:
     case AuthActionType.REGISTER_SUCCESS:
       return { ...state, isLoggedIn: true, currentUser: action.payload.user, error: null, isLoading: false };
     case AuthActionType.LOGIN_ERROR:
@@ -18,8 +18,7 @@ const authReducer = (state: AuthState, action: AuthAction): AuthState => {
       return { ...state, error: action.payload, isLoggedIn: false, currentUser: null, isLoading: false };
     case AuthActionType.LOGOUT:
       return { ...state, isLoggedIn: false, currentUser: null };
-    case AuthActionType.SET_LOADING:
-      return { ...state, isLoading: action.payload };
+    
     default:
       return state;
   }

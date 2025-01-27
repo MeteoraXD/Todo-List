@@ -8,14 +8,10 @@ export const getTodos = (storageType: StorageType): Todo[] => {
       storageType === StorageType.LOCAL
         ? localStorage.getItem(`todos_${authUser}`)
         : sessionStorage.getItem(`todos_${authUser}`);
-    console.log(`Retrieved todos from ${storageType}:`, storedTodos); // Log the raw data
 
-    try {
-      return storedTodos ? JSON.parse(storedTodos) : [];
-    } catch (error) {
-      console.error(`Failed to parse todos from ${storageType}:`, error);
-      return [];
-    }
+
+    return storedTodos ? JSON.parse(storedTodos) : [];
+
   }
   console.warn('No auth user found in Local Storage.');
   return [];

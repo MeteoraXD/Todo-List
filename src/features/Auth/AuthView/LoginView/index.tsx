@@ -17,7 +17,7 @@ import {
 import EyeClosedIcon from '@/components/icons/EyeclosedIcon';
 import EyeOpenIcon from '@/components/icons/EyeOpenIcon';
 
-const LogInView: React.FC = () => {
+const LogInView: React.FunctionComponent = () => {
   const { register, handleSubmit, onSubmit, errors } = useLogin();
   const [PasswordVisibility, setPasswordVisibility] = useState(false);
 

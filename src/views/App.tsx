@@ -4,6 +4,7 @@ import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from '@/routeTree.gen.ts';
 import { AuthProvider } from '@/providers/AuthProvider';
 import TodoProvider from '@/providers/TodoProvider';
+import ThemeProvider from '@/providers/ThemeProvider';
 
 const router = createRouter({ routeTree });
 declare module '@tanstack/react-router' {
@@ -16,13 +17,14 @@ const App: React.FC = () => {
 
 
   return (
-    <AuthProvider>
-      <TodoProvider>
+    <ThemeProvider>
+      <AuthProvider>
+        <TodoProvider>
 
-        <RouterProvider router={router} />
-      </TodoProvider>
-    </AuthProvider>
-
+          <RouterProvider router={router} />
+        </TodoProvider>
+      </AuthProvider>
+    </ThemeProvider>
   );
 };
 

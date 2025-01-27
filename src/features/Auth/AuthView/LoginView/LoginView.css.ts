@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { vars } from '@/styles/theme.css.ts';
 import BackgroundImage
   from '@/assets/xzczzxczxczczczczcz.jpg';
+import { mediaQuery } from '@/styles/utilities.css.ts';
 
 const LoginWrapper = style({
   display: 'flex',
@@ -12,6 +13,10 @@ const LoginWrapper = style({
   backgroundImage: `url(${BackgroundImage})`,
   backgroundSize: 'cover',
   height: '100vh',
+  [mediaQuery('small')]: {
+    padding: '0 12px',
+
+  },
 });
 
 const TitleWrapper = style({
@@ -24,11 +29,18 @@ const LoginTitle = style({
   fontWeight: 'bold',
   lineHeight: '30px',
   color: vars.colors.base.black,
+  [mediaQuery('small')]: {
+    fontSize: '20px',
+    lineHeight: '26px',
+  },
 });
 
 const LoginSubHeading = style({
   fontSize: '14px',
   color: vars.colors.greySea.dark,
+  [mediaQuery('small')]: {
+    fontSize: '12px',
+  },
 });
 
 const LoginForm = style({
@@ -41,11 +53,27 @@ const LoginForm = style({
   borderRadius: '8px',
   boxShadow: ' rgba(8,8, 8, 0.7) 0px 4px 12px;',
   backgroundColor: vars.colors.base.white,
+  [mediaQuery('medium')]: {
+    padding: '4rem 5rem',
+    maxWidth: '320px',
+    maxHeight: '100%',
+    overflow: 'hidden',
+
+
+  },
+
+  [mediaQuery('small')]: {
+    padding: '2rem 3rem',
+
+  },
 });
 
 const LoginLabelInputWrapper = style({
   display: 'flex',
   flexDirection: 'column',
+  [mediaQuery('small')]: {
+    marginTop: '16px',
+  },
 });
 
 const LoginInputLabel = style({
@@ -53,6 +81,9 @@ const LoginInputLabel = style({
   fontSize: '14px',
   fontWeight: '600',
   marginBottom: '8px',
+  [mediaQuery('small')]: {
+    fontSize: '12px',
+  },
 });
 
 const PasswordToggleWrapper = style({
@@ -84,6 +115,12 @@ const LoginInput = style({
   ':focus': {
     borderBottom: `2px solid ${vars.colors.primary.accent}`,
   },
+
+
+  [mediaQuery('small')]: {
+    fontSize: '14px',
+    padding: '8px 16px',
+  },
 });
 
 const LoginButton = style({
@@ -100,12 +137,20 @@ const LoginButton = style({
   ':hover': {
     transform: 'scale(1.05)',
   },
+  [mediaQuery('small')]: {
+    padding: '10px 20px',
+    fontSize: '14px',
+  },
 });
 
 const ErrorMessage = style({
   color: 'red',
   fontSize: '14px',
   marginBottom: '20px',
+  [mediaQuery('small')]: {
+    fontSize: '12px',
+    marginBottom: '16px',
+  },
 });
 
 export {

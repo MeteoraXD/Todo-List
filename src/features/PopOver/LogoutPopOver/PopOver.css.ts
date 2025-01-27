@@ -8,6 +8,7 @@ const TrrigerButton = style({
   display: 'flex',
   alignItems: 'center',
   cursor: 'pointer',
+  gap: '3px',
 });
 
 const PopOverWrapper = style({

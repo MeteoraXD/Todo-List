@@ -11,6 +11,7 @@ import {
 import PlaceholderIcon from '@/components/icons/PlaceholderIcon';
 import ResetPopOver from '@/features/PopOver/ResetPopOver';
 import LogoutPopOver from '@/features/PopOver/LogoutPopOver';
+import ThemeToggle from '@/features/ColorModeToggle';
 
 const TodoNavbar: React.FunctionComponent = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -27,6 +28,7 @@ const TodoNavbar: React.FunctionComponent = () => {
       setIsDropdownOpen(false);
     }
   };
+
 
   const todayDate = () => {
     const today = new Date();
@@ -83,13 +85,16 @@ const TodoNavbar: React.FunctionComponent = () => {
       <nav className={NavBarWrapper}>
         <h1>Hello, {username}</h1>
         <h2 className={NavBarTime}>{todayDate()}</h2>
-
         <div ref={dropdownRef} className={DropDownButton} onClick={toggleDropdown}>
           <PlaceholderIcon />
 
           {isDropdownOpen && (
             <div onClick={handlePopoverClick}>
               <ul className={DropDownList}>
+                <li className={DropDownItems}>
+                  <ThemeToggle />
+
+                </li>
                 <li className={DropDownItems}>
                   <LogoutPopOver />
                 </li>
